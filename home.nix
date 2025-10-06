@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   home.username = "sky";
   home.homeDirectory = "/home/sky";
@@ -14,4 +14,6 @@
     ./modules/xdg-portal.nix
     ./modules/waybar/waybar.nix
   ];
+
+  home.packages = lib.mkForce [ ];
 }
