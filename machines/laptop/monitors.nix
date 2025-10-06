@@ -9,7 +9,7 @@ in
     "$secondary_monitor" = cfg.monitors.secondary;
 
     monitor = [
-      "$primary_monitor,2560x1440@280,0x0,1"
+      "$primary_monitor,preferred,0x0,1"
       "$secondary_monitor,2560x1440@60,2560x-1050,1,transform,3"
     ];
 
