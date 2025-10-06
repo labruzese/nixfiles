@@ -1,5 +1,5 @@
 {
-  description = "Skylar's Nix on Arch Setup";
+  description = "skylar's nix on arch";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
