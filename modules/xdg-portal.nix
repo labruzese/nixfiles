@@ -4,7 +4,11 @@
   # Configure portals
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
+    config.preferred = {
+      default = "hyprland";
+      "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+      "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
+    };
     # Managed by pacman:
     # extraPortals = with pkgs; [
     #   xdg-desktop-portal-hyprland
