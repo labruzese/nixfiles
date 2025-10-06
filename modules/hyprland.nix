@@ -4,7 +4,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    package = pkgs.hyprland;
+    # package = pkgs.hyprland; # installed with pacman
 
     settings = {
       # Programs - can be overridden per-machine
