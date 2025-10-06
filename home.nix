@@ -11,5 +11,6 @@
   imports = [
     ./modules/hyprland.nix
     ./modules/uwsm.nix
+    ./modules/xdg-portal.nix
   ];
 }
