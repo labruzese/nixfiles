@@ -1,0 +1,199 @@
+/* Waybar CSS with Catppuccin Color Palette 
+   Color Reference:
+   - rosewater: #f5e0dc    - flamingo: #f2cdcd     - pink: #f5c2e7       - mauve: #cba6f7
+   - red: #f38ba8          - maroon: #eba0ac       - peach: #fab387      - yellow: #f9e2af
+   - green: #a6e3a1        - teal: #94e2d5         - sky: #89dceb        - sapphire: #74c7ec
+   - blue: #89b4fa         - lavender: #b4befe     - text: #cdd6f4       - subtext1: #bac2de
+   - subtext0: #a6adc8     - overlay2: #9399b2     - overlay1: #7f849c   - overlay0: #6c7086
+   - surface2: #585b70     - surface1: #45475a     - surface0: #313244   - base: #1e1e2e
+   - mantle: #1e1e2e       - crust: #11111b
+*/
+
+window#waybar {
+	font-family: "JetbrainsMono Nerd Font";
+	font-size: 15px;
+	min-height: 10px;
+}
+
+#custom-launcher {
+	font-size: 24px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 5px;
+	border-radius: 10px 0px 0px 10px;
+	border-right-width: 2px;
+	border-right-style: solid;
+	border-right-color: #7f849c;
+	transition: none;
+	color: #cba6f7;
+	background: #1e1e2e;
+}
+
+#custom-launcher:hover {
+	color: #f5c2e7;
+}
+
+window#waybar {
+	background: #1e1e2e;
+	opacity: 0.95;
+}
+
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+#window {
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px 0px 0px 10px;
+	/* transition: none; */
+	/* color: transparent; */
+	/* background: transparent; */
+}
+
+#workspaces {
+	font-size: 4px;
+	margin-bottom: 0px;
+	border-radius: 0px 10px 10px 0px;
+	background: #1e1e2e;
+	transition: none;
+}
+
+#workspaces button {
+	transition: none;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	color: #cdd6f4;
+	background: transparent;
+	font-size: 20px;
+	border-radius: 2px;
+}
+
+#workspaces button.occupied {
+	transition: none;
+	color: #f38ba8;
+	background: transparent;
+}
+
+#workspaces button:hover {
+	transition: none;
+	box-shadow: inherit;
+	text-shadow: inherit;
+	border-color: #f5c2e7;
+}
+
+#workspaces button.active {
+	color: #f5c2e7;
+}
+
+#workspaces button.visible {
+	color: #f5c2e7;
+}
+
+#workspaces button.urgent {
+	color: #f38ba8;
+}
+
+#window {
+	color: #cba6f7;
+}
+
+#cpu {
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 0px;
+	transition: none;
+	color: #89b4fa;
+	background: #1e1e2e;
+}
+
+#custom-gpu {
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 0px;
+	transition: none;
+	color: #cba6f7;
+	background: #1e1e2e;
+}
+
+#memory {
+	padding-left: 0px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 0px 10px 10px 0px;
+	transition: none;
+	color: #b4befe;
+	background: #1e1e2e;
+}
+
+#custom-media {
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #b6d6b7;
+	background: #1e1e2e;
+}
+
+#tray {
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 10px 0px 0px 10px;
+	border-right-width: 2px;
+	border-right-style: solid;
+	border-right-color: #7f849c;
+	transition: none;
+	color: #94e2d5;
+	background: #1e1e2e;
+}
+
+#custom-updates {
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: rgba(235, 160, 172, 0.75);
+	background: #1e1e2e;
+}
+
+#pulseaudio {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	border-right-width: 2px;
+	border-right-style: solid;
+	border-right-color: #7f849c;
+	transition: none;
+	color: #cdd6f4;
+	background: #1e1e2e;
+}
+
+#clock {
+	font-family: "Digital Display";
+	font-size: 24px;
+	padding-left: 10px;
+	padding-right: 9px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #cdd6f4;
+	background: #1e1e2e;
+	border-radius: 10px;
+}
+
+#clock.date {
+	font-family: JetbrainsMono;
+	margin-left: 8px;
+	font-size: 15px;
+}
