@@ -2,7 +2,7 @@
 
 {
   wayland.windowManager.hyprland.settings = {
-    # used a patched waybar
-    "$bar" = "/home/sky/dev/waybar-fix/build/waybar";
+    # don't used patched waybar
+    "$bar" = "waybar"; # "/home/sky/dev/waybar-fix/build/waybar";
   };
 }
