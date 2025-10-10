@@ -29,6 +29,9 @@ require("lazy").setup({
 		build = function()
 			require("base46").load_all_highlights()
 		end,
+		config = function()
+			require("base46").load_all_highlights()
+		end,
 	},
 
 	-- TREESITTER
