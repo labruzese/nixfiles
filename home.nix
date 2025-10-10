@@ -9,7 +9,7 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./modules/hyprland.nix
+    ./modules/hyprland/hyprland.nix
     ./modules/uwsm.nix
     ./modules/xdg-portal.nix
     ./modules/waybar/waybar.nix

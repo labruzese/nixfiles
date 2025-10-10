@@ -7,7 +7,7 @@
     settings = {
       mainBar = {
         layer = "top";
-        position = "top";
+        position = "bottom";
         mode = "dock";
         reload-style-on-change = true;
 

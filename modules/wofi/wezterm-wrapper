@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$1" = "-e" ]; then
+    shift
+    exec wezterm start -- "$@"
+else
+    exec wezterm start "$@"
+fi
