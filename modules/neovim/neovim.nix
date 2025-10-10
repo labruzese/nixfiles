@@ -48,6 +48,9 @@
 	  source = ./plugins;
 	  recursive = true;
     };
+    "nvim/lua/chadrc.lua" = {
+      source = ./chadrc.lua;
+    };
   };
 }
 
