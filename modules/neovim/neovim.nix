@@ -18,17 +18,6 @@
       require('config.autocmds')
     '';
 
-	# create the config files that we reference
-	xdg.configFile = {
-      "nvim/lua/config" = {
-	    source = ./config;
-		recursive = true;
-	  };
-	  "nvim/lua/plugins" = {
-		source = ./plugins;
-		recursive = true;
-	  };
-	};
 
     # extraPackages = with pkgs; [
     #   # LSP servers
@@ -48,6 +37,17 @@
     #   fd
     #   lazygit
     # ];
+  };
+  # create the config files that we reference
+  xdg.configFile = {
+    "nvim/lua/config" = {
+	  source = ./config;
+	  recursive = true;
+    };
+    "nvim/lua/plugins" = {
+	  source = ./plugins;
+	  recursive = true;
+    };
   };
 }
 
