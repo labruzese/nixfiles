@@ -5,6 +5,12 @@
     enable = true;
     xwayland.enable = true;
 
+    # deploy scripts
+    xdg.configFile."hypr/scripts" = {
+      source = ./scripts;
+      recursive = true;
+      executable = true;
+    };
     settings = {
       # Programs - can be overridden per-machine
       "$terminal" = lib.mkDefault "uwsm app -- wezterm";

@@ -3,7 +3,7 @@
 {
   programs.wofi = {
     enable = true;
-    
+
     settings = {
       show = "drun";
       sort_order = "default";
@@ -14,7 +14,7 @@
       xoffset = 795;
       yoffset = -37;
       line_wrap = "word";
-      term = "~/.config/wofi/wezterm-wrapper";
+      term = "/home/sky/.config/wofi/wezterm-wrapper";
       allow_markup = true;
       always_parse_args = false;
       show_all = true;
@@ -30,7 +30,7 @@
       insensitive = true;
       key_up = "Ctrl-k";
       key_down = "Ctrl-j";
-      style = "~/.config/wofi/style.css";
+      style = "/home/sky/.config/wofi/style.css";
     };
   };
 
