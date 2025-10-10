@@ -13,6 +13,7 @@
     ./modules/uwsm.nix
     ./modules/xdg-portal.nix
     ./modules/waybar/waybar.nix
+    ./modules/wofi/wofi.nix
   ];
 
   home.packages = lib.mkForce [ ];
