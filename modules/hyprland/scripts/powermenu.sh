@@ -6,7 +6,7 @@ fi
 
 options="Lock\nSleep\nReboot\nShutdown\nLogout"
 
-selected=$(echo -e "$options" | wofi --dmenu --style ~/.config/wofi/powermenu.css)
+selected=$(echo -e "$options" | wofi --dmenu --style ~/.config/wofi/powermenu-style.css)
 
 case $selected in
     "Lock")
