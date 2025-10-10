@@ -81,3 +81,6 @@ require('oil').setup({
         },
     },
 })
+
+-- Mappings
+vim.keymap.set('n', '-', "<cmd>Oil<cr>", { desc = "Open parent directory with Oil" })

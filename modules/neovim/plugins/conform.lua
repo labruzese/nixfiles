@@ -23,3 +23,11 @@ require('conform').setup({
 	log_level = vim.log.levels.INFO,
 	notify_on_error = true,
 })
+
+-- Mappings
+vim.keymap.set('n', '<space>f', function()
+	require('conform').format({
+		async = true,
+		lsp_fallback = true,
+	})
+end, { desc = "Format code with conform.nvim" })
