@@ -5,7 +5,10 @@ let
 in
 {
   programs.waybar = {
-    style = config.programs.waybar.style + builtins.readFile ./waybar-style.css;
+    style = ''
+      ${builtins.readFile ../../modules/waybar/style.css}
+      ${builtins.readFile ./waybar-style.css}
+    '';
 
     settings.mainBar = {
       modules-right = [

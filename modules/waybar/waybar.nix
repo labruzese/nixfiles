@@ -6,22 +6,22 @@
 
     settings = {
       mainBar = {
-        layer = "top";
-        position = "top";
-        mode = "dock";
-        reload-style-on-change = true;
+        layer = lib.mkDefault "top";
+        position = lib.mkDefault "top";
+        mode = lib.mkDefault "dock";
+        reload-style-on-change = lib.mkDefault true;
 
-        modules-left = [
+        modules-left = lib.mkDefault [
           "custom/launcher"
           "hyprland/workspaces"
           "hyprland/window"
         ];
 
-        modules-center = [
+        modules-center = lib.mkDefault [
           "clock#time"
         ];
 
-        modules-right = [
+        modules-right = lib.mkDefault [
           "custom/media"
           "clock#date"
           "custom/updates"
@@ -33,11 +33,11 @@
         ];
 
         pulseaudio = {
-          tooltip = false;
-          format = "{format_source}";
-          format-source = "         ";
-          format-source-muted = " ";
-          on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          tooltip = lib.mkDefault false;
+          format = lib.mkDefault "{format_source}";
+          format-source = lib.mkDefault "         ";
+          format-source-muted = lib.mkDefault " ";
+          on-click = lib.mkDefault "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
         };
 
         "hyprland/workspaces" = {
@@ -167,6 +167,6 @@
       };
     };
 
-    style = builtins.readFile ./style.css;
+    style = lib.mkDefault (builtins.readFile ./style.css);
   };
 }
