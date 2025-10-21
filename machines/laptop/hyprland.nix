@@ -5,7 +5,7 @@
     input = {
       accel_profile = "adaptive";
       force_no_accel = false;
-      
+
       touchpad = {
         natural_scroll = true;
         scroll_factor = 0.5;
@@ -18,6 +18,11 @@
       gaps_in = 1;
       gaps_out = 3;
     };
+
+    bind = [
+      "$mainMod SHIFT, 1, movetoworkspace, 1"
+      "$mainMod, 1, workspace, 1"
+    ];
 
     bindl = [
       ", switch:Lid Switch, exec, hyprlock"

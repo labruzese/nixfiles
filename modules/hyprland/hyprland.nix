@@ -62,9 +62,9 @@
 
       # General settings
       general = {
-        gaps_in = 4;
-        gaps_out = 10;
-        border_size = 1;
+        gaps_in = lib.mkDefault 4;
+        gaps_out = lib.mkDefault 10;
+        border_size = lib.mkDefault 1;
         "col.active_border" = "rgba(89b4faee) rgba(f5c2e7ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
         resize_on_border = false;
@@ -87,16 +87,16 @@
         };
 
         blur = {
-          enabled = true;
-          size = 3;
-          passes = 5;
-          vibrancy = 0.1696;
+          enabled = lib.mkDefault true;
+          size = lib.mkDefault 3;
+          passes = lib.mkDefault 5;
+          vibrancy = lib.mkDefault 0.1696;
         };
       };
 
       # Animations
       animations = {
-        enabled = true;
+        enabled = lib.mkDefault true;
 
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
@@ -143,13 +143,13 @@
 
       input = {
         kb_layout = "us";
-        follow_mouse = 1;
-        accel_profile = "flat";
-        force_no_accel = true;
-        sensitivity = 0;
+        follow_mouse = lib.mkDefault 1;
+        accel_profile = lib.mkDefault "flat";
+        force_no_accel = lib.mkDefault true;
+        sensitivity = lib.mkDefault 0;
 
         touchpad = {
-          natural_scroll = false;
+          natural_scroll = lib.mkDefault false;
         };
       };
 
