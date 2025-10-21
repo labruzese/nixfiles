@@ -14,7 +14,8 @@
     ./modules/xdg-portal.nix
     ./modules/waybar/waybar.nix
     ./modules/wofi/wofi.nix
-	./modules/neovim/neovim.nix
+    ./modules/neovim/neovim.nix
+    ./modules/wezterm/wezterm.nix
   ];
 
   # don't actually install anything
