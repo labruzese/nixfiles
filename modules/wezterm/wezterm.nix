@@ -11,7 +11,7 @@
       owner = "labruzese";
       repo = "bar.wezterm";
       rev = "main";
-      sha256 = "xAEuaWM0WXf0majKdnp5N8PSKMkBF1rDg5i7kOlwQ38";
+      sha256 = "sha256-xAEuaWM0WXf0majKdnp5N8PSKMkBF1rDg5i7kOlwQ38=";
     };
     "wezterm/shell-integration".source = ./shell-integration;
   };
