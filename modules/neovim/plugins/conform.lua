@@ -3,6 +3,7 @@ require('conform').setup({
 		lua = { "stylua" },
 		c = { "clang_format" },
 		kotlin = { "ktlint" },
+		ocaml = { "ocamlformat" }
 	},
 	formatters = {
 		clang_format = {
