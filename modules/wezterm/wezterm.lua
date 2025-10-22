@@ -48,11 +48,11 @@ config.mouse_bindings = {
 
 config.keys = {
 	{
-		key = "E",
-		mods = "CTRL|SHIFT",
+		key = "n",
+		mods = "ALT",
 		action = act.PromptInputLine({
 			description = "Enter new name for tab",
-			action = wezterm.action_callback(function(window, pane, line)
+			action = wezterm.action_callback(function(window, _, line)
 				if line then
 					window:active_tab():set_title(line)
 				end
@@ -60,9 +60,9 @@ config.keys = {
 		}),
 	},
 	{
-		key = "O",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action_callback(function(window, pane)
+		key = "o",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, _)
 			local overrides = window:get_config_overrides() or {}
 			if not overrides.window_background_opacity then
 				overrides.window_background_opacity = 1.0
@@ -72,29 +72,47 @@ config.keys = {
 			window:set_config_overrides(overrides)
 		end),
 	},
-	{ key = "d",         mods = "CTRL|SHIFT", action = act.ShowDebugOverlay },
+	{ key = "d",         mods = "ALT",       action = act.ShowDebugOverlay },
 
 	-- Delete entire word with Ctrl+Backspace
-	{ key = "Backspace", mods = "CTRL",       action = act.SendKey({ key = "w", mods = "CTRL" }) },
+	{ key = "Backspace", mods = "CTRL",      action = act.SendKey({ key = "w", mods = "CTRL" }) },
 
-	-- Cursor movement
-	{ key = "i",         mods = "ALT",        action = act.SendKey({ key = "Home" }) }, -- Insert at beginning of line
-	{ key = "a",         mods = "ALT",        action = act.SendKey({ key = "End" }) },  -- Insert at end of line
+	-- Session Management Keybinds
+	-- Switch to specific tabs in default workspace (Alt + q/w/e/r/t)
+	{ key = "q",         mods = "ALT",       action = act.ActivateTab(0) },
+	{ key = "w",         mods = "ALT",       action = act.ActivateTab(1) },
+	{ key = "e",         mods = "ALT",       action = act.ActivateTab(2) },
+	{ key = "r",         mods = "ALT",       action = act.ActivateTab(3) },
+	{ key = "t",         mods = "ALT",       action = act.ActivateTab(4) },
 
-	-- Tab management
-	{ key = "t",         mods = "ALT",        action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "b",         mods = "ALT",        action = act.SplitPane({ direction = "Down" }) },        -- Horizontal split (changed from 'h')
-	{ key = "v",         mods = "ALT",        action = act.SplitPane({ direction = "Right" }) },       -- Vertical split
-	{ key = "w",         mods = "ALT",        action = act.CloseCurrentPane({ confirm = false }) },
-	{ key = "n",         mods = "ALT|SHIFT",  action = act.PaneSelect({ mode = "MoveToNewWindow" }) }, -- Move pane to new window
+	-- Switch to specific tabs in alternate workspace (Alt + z/x)
+	{ key = "z",         mods = "ALT",       action = act.ActivateTab(5) },
+	{ key = "x",         mods = "ALT",       action = act.ActivateTab(6) },
 
-	-- Tab navigation
-	{ key = "h",         mods = "ALT",        action = act.ActivateTabRelative(-1) },        -- Previous tab
-	{ key = "l",         mods = "ALT",        action = act.ActivateTabRelative(1) },         -- Next tab
-	{ key = "h",         mods = "ALT|SHIFT",  action = act.ActivatePaneDirection("Left") },  -- Tab to the left
-	{ key = "l",         mods = "ALT|SHIFT",  action = act.ActivatePaneDirection("Right") }, -- Tab to the right
-	{ key = "k",         mods = "ALT|SHIFT",  action = act.ActivatePaneDirection("Up") },    -- Tab above
-	{ key = "j",         mods = "ALT|SHIFT",  action = act.ActivatePaneDirection("Down") },  -- Tab below
+	-- Move focus between panes (Alt + h/j/k/l)
+	{ key = "h",         mods = "ALT",       action = act.ActivatePaneDirection("Left") },
+	{ key = "j",         mods = "ALT",       action = act.ActivatePaneDirection("Down") },
+	{ key = "k",         mods = "ALT",       action = act.ActivatePaneDirection("Up") },
+	{ key = "l",         mods = "ALT",       action = act.ActivatePaneDirection("Right") },
+
+	-- Open new pane in current tab (Alt + Enter)
+	{ key = "Return",    mods = "ALT",       action = act.SplitPane({ direction = "Right" }) },
+	{ key = "Return",    mods = "ALT|SHIFT", action = act.SplitPane({ direction = "Down" }) },
+
+	-- Close current pane (Alt + c)
+	{ key = "c",         mods = "ALT",       action = act.CloseCurrentPane({ confirm = false }) },
+
+	-- Toggle fullscreen (Alt + f)
+	{ key = "f",         mods = "ALT",       action = act.TogglePaneZoomState },
+
+	-- Move current pane to specific tabs (Alt + Shift + q/w/e/r/t/z/x)
+	{ key = "Q",         mods = "ALT|SHIFT", action = act.MoveTab(0) },
+	{ key = "W",         mods = "ALT|SHIFT", action = act.MoveTab(1) },
+	{ key = "E",         mods = "ALT|SHIFT", action = act.MoveTab(2) },
+	{ key = "R",         mods = "ALT|SHIFT", action = act.MoveTab(3) },
+	{ key = "T",         mods = "ALT|SHIFT", action = act.MoveTab(4) },
+	{ key = "Z",         mods = "ALT|SHIFT", action = act.MoveTab(5) },
+	{ key = "X",         mods = "ALT|SHIFT", action = act.MoveTab(6) },
 }
 
 
