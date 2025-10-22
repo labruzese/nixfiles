@@ -159,7 +159,6 @@
       # Keybindings
       bind = [
         # Programs
-        "$mainMod SHIFT, Return, exec, $terminal_overlay"
         "$mainMod, backslash, exec, $terminal_overlay"
         "$mainMod, Return, exec, $terminal"
         "$mainMod, D, exec, $browser"

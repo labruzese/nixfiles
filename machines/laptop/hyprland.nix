@@ -22,6 +22,7 @@
     bind = [
       "$mainMod SHIFT, 1, movetoworkspace, 1"
       "$mainMod, 1, workspace, 1"
+      "$mainMod SHIFT, Return, exec, wezterm ssh desktop"
     ];
 
     bindl = [
