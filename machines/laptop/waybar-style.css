@@ -1,28 +1,32 @@
 /* Only include overrides from base style */
 
 #custom-launcher {
-    color: #89dceb;
+	color: #89dceb;
 }
 
 window#waybar {
-    opacity: 1.0;
+	opacity: 1.0;
 }
 
 #window {
-    color: #a6e3a1;
+	color: #a6e3a1;
 }
 
 #battery {
-    padding-left: 10px;
-    margin-bottom: 0px;
-    padding-right: 10px;
-    border-radius: 0px;
-    transition: none;
-    color: #cba6f7;
-    background: #1e1e2e;
+	padding-left: 0px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 0px;
+	transition: none;
+	color: #cba6f7;
+	background: #1e1e2e;
+}
+
+#battery.charging {
+	color: #a6e3a1;
 }
 
 #clock.date {
-    font-family: JetbrainsMono Nerd Font;
-    font-size: 15px;
+	font-family: JetbrainsMono Nerd Font;
+	font-size: 15px;
 }

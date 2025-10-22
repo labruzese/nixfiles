@@ -23,8 +23,8 @@ in
       ];
 
       pulseaudio = {
-        format = "{volume}%";
-        format-muted = "[MUTED] {volume}%";
+        format = "{volume}% vol";
+        # format-muted = "[MUTED] {volume}%";
       };
 
       "hyprland/workspaces".persistent-workspaces = {
@@ -43,7 +43,11 @@ in
           warning = 30;
           critical = 15;
         };
-        format = "{icon} {capacity}%";
+        format = "{capacity}% bat";
+        format-critical = "{capacity}% bat  {time}";
+        format-warning = "{capacity}% bat  {time}";
+        format-time = "{H}h {M}m";
+
         format-icons = [
           ""
           ""

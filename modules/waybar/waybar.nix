@@ -103,9 +103,9 @@
         };
 
         cpu = {
-          interval = 15;
+          interval = 10;
           # format = " {avg_frequency}Ghz";
-          format = " {avg_frequency}";
+          format = "{usage}% cpu";
           format-icons = [
             "<span color='#a7ffd0'></span>"
             "<span color='#c9ffad'></span>"
@@ -126,7 +126,7 @@
 
         memory = {
           interval = 30;
-          format = " {used}";
+          format = "{percentage}% mem";
           max-length = 10;
         };
 
