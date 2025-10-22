@@ -78,22 +78,31 @@ config.keys = {
 	{ key = "Backspace", mods = "CTRL",      action = act.SendKey({ key = "w", mods = "CTRL" }) },
 
 	-- Session Management Keybinds
-	-- Switch to specific tabs in default workspace (Alt + q/w/e/r/t)
+	{ key = "t",         mods = "ALT",       action = act.SpawnTab("CurrentPaneDomain") },
+
+	-- Switch to specific tabs in default workspace (Alt + q/w/e/r)
 	{ key = "q",         mods = "ALT",       action = act.ActivateTab(0) },
 	{ key = "w",         mods = "ALT",       action = act.ActivateTab(1) },
 	{ key = "e",         mods = "ALT",       action = act.ActivateTab(2) },
 	{ key = "r",         mods = "ALT",       action = act.ActivateTab(3) },
-	{ key = "t",         mods = "ALT",       action = act.ActivateTab(4) },
 
 	-- Switch to specific tabs in alternate workspace (Alt + z/x)
-	{ key = "z",         mods = "ALT",       action = act.ActivateTab(5) },
-	{ key = "x",         mods = "ALT",       action = act.ActivateTab(6) },
+	{ key = "z",         mods = "ALT",       action = act.ActivateTab(0) },
+	{ key = "x",         mods = "ALT",       action = act.ActivateTab(1) },
 
 	-- Move focus between panes (Alt + h/j/k/l)
 	{ key = "h",         mods = "ALT",       action = act.ActivatePaneDirection("Left") },
 	{ key = "j",         mods = "ALT",       action = act.ActivatePaneDirection("Down") },
 	{ key = "k",         mods = "ALT",       action = act.ActivatePaneDirection("Up") },
 	{ key = "l",         mods = "ALT",       action = act.ActivatePaneDirection("Right") },
+
+	-- Workspace management (Alt + 1 for default, Alt + 2 for alternate)
+	{ key = "1",         mods = "ALT",       action = act.SwitchToWorkspace({ name = "default" }) },
+	{ key = "2",         mods = "ALT",       action = act.SwitchToWorkspace({ name = "alternate" }) },
+
+	-- Workspace switcher (Alt + s shows all workspaces)
+	{ key = "s",         mods = "ALT",       action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+
 
 	-- Open new pane in current tab (Alt + Enter)
 	{ key = "Return",    mods = "ALT",       action = act.SplitPane({ direction = "Right" }) },
