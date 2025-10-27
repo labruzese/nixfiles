@@ -55,7 +55,7 @@
           format-window-seperator = "";
           window-rewrite-default = "<span size='small'></span>";
           window-rewrite = {
-            "class<discord>" = "<span size='small'></span>";
+            "class<vesktop>" = "<span size='small'></span>";
             "class<Spotify>" = "<span size='small'></span>";
             "class<rocketleague.exe>" = "<span size='small'></span>";
             "class<.*wezterm>" = "<span size='small'><i><b>$W</b></i></span>";

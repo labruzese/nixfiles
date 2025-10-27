@@ -25,7 +25,7 @@
       "$bar" = lib.mkDefault "waybar";
       "$notify" = "mako";
       "$browser" = "uwsm app -- zen.desktop";
-      "$chat" = "uwsm app -- discord.desktop";
+      "$chat" = "uwsm app -- vesktop.desktop";
       "$bluetooth" = "blueman-applet";
 
       # Game patterns
@@ -267,8 +267,8 @@
         "immediate, class:^(steam_app_322170)$"
         "stayfocused, class:^(steam_app_322170)$"
 
-        # Automove discord to music
-        "workspace name:music, class:^(discord)$"
+        # Automove vesktop to music
+        "workspace name:music, class:^(vesktop)$"
 
         # Default settings
         # Don't allow maximization and don't focus window popups from xwayland apps
