@@ -1,29 +1,29 @@
 { config, pkgs, ... }:
-
 {
   programs.zsh = {
     enable = true;
-
-    # Add to path
-    initContent = [
-      "$HOME/scripts"
-      "$HOME/.cargo/bin"
-    ];
 
     enableCompletion = true;
     autosuggestion.enable = false;
     syntaxHighlighting.enable = true;
 
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     history = {
       size = 10000;
+      path = "${config.xdg.dataHome}/zsh/zsh_history";
     };
 
     # Vi mode settings
     defaultKeymap = "viins";
 
-    # Oh My Zsh integration
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      TERM = "wezterm";
+      MANPAGER = "nvim +Man!";
+    };
+
     oh-my-zsh = {
       enable = true;
       theme = "clean";
@@ -36,21 +36,24 @@
       ];
 
       extraConfig = ''
-        		  # Vi mode configuration
-        		  KEYTIMEOUT=15
-        		  VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-        		  MODE_INDICATOR="%F{blue} %f"
-        		  INSERT_MODE_INDICATOR="%F{green} %f"
-        		  VI_MODE_CURSOR_VISUAL=0
+        # Vi mode configuration
+        KEYTIMEOUT=15
+        VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+        MODE_INDICATOR="%F{blue} %f"
+        INSERT_MODE_INDICATOR="%F{green} %f"
+        VI_MODE_CURSOR_VISUAL=0
 
-        		  HYPHEN_INSENSITIVE="true"
+        HYPHEN_INSENSITIVE="true"
       '';
     };
 
-    initExtra = ''
+    # mostly enviornments 
+    initContent = ''
+      # Add custom paths to PATH
+      export PATH="$HOME/scripts:$HOME/.cargo/bin:$PATH"
       
       # Add vi mode indicator to prompt
-      PROMPT="\$(vi_mode_prompt_info)$PROMPT"
+      PROMPT="$(vi_mode_prompt_info)$PROMPT"
       
       # WezTerm shell integration
       if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
@@ -71,13 +74,6 @@
       # Opam configuration
       [[ ! -r '/home/sky/.opam/opam-init/init.zsh' ]] || source '/home/sky/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
     '';
-
-    sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-      TERM = "wezterm";
-      MANPAGER = "nvim +Man!";
-    };
 
     shellAliases = {
       ls = "exa --icons";
