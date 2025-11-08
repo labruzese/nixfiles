@@ -16,6 +16,7 @@
     ./modules/wofi/wofi.nix
     ./modules/neovim/neovim.nix
     ./modules/wezterm/wezterm.nix
+    ./modules/zsh.nix
   ];
 
   # don't actually install anything
