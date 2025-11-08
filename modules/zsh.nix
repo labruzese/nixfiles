@@ -4,6 +4,12 @@
   programs.zsh = {
     enable = true;
 
+    # Add to path
+    initContent = [
+      "$HOME/scripts"
+      "$HOME/.cargo/bin"
+    ];
+
     enableCompletion = true;
     autosuggestion.enable = false;
     syntaxHighlighting.enable = true;
@@ -12,7 +18,6 @@
 
     history = {
       size = 10000;
-      path = "${config.xdg.dataHome}/zsh/history";
     };
 
     # Vi mode settings
@@ -31,17 +36,18 @@
       ];
 
       extraConfig = ''
-        HYPHEN_INSENSITIVE="true"
+        		  # Vi mode configuration
+        		  KEYTIMEOUT=15
+        		  VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+        		  MODE_INDICATOR="%F{blue} %f"
+        		  INSERT_MODE_INDICATOR="%F{green} %f"
+        		  VI_MODE_CURSOR_VISUAL=0
+
+        		  HYPHEN_INSENSITIVE="true"
       '';
     };
 
     initExtra = ''
-      # Vi mode configuration
-      KEYTIMEOUT=15
-      VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-      MODE_INDICATOR="%F{blue} %f"
-      INSERT_MODE_INDICATOR="%F{green} %f"
-      VI_MODE_CURSOR_VISUAL=0
       
       # Add vi mode indicator to prompt
       PROMPT="\$(vi_mode_prompt_info)$PROMPT"
@@ -79,10 +85,6 @@
       copy = "wl-copy";
     };
 
-    sessionPath = [
-      "$HOME/scripts"
-      "$HOME/.cargo/bin"
-    ];
   };
 
   home.packages = with pkgs; [
