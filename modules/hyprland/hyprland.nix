@@ -246,7 +246,7 @@
       ];
 
       # Window rules
-      windowrulev2 = [
+      windowrule = [
         # When wezterm is run in overlay workspace
         "float, class:^(wezterm-overlay)$"
         "size 40% 40%, class:^(wezterm-overlay)$"
