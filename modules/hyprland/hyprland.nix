@@ -255,7 +255,7 @@
 
         # Treat games differently
         "immediate, $game_classes"
-        "fullscreenstate, 2, $game_classes"
+        "fullscreenstate 2 2, $game_classes"
         "noborder, $game_classes"
         "noshadow, $game_classes"
         "noblur, $game_classes"
