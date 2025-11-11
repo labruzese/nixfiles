@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -11,6 +11,12 @@
 
     history = {
       size = 10000;
+    };
+
+    shellAliases = {
+      ls = "exa --icons";
+      trash = "gio trash";
+      copy = "wl-copy";
     };
 
     # Vi mode settings
@@ -35,55 +41,54 @@
       ];
 
       extraConfig = ''
-        	# Vi mode configuration
-            KEYTIMEOUT=15
-            VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-            MODE_INDICATOR="%F{blue} %f"
-            INSERT_MODE_INDICATOR="%F{green} %f"
-            VI_MODE_CURSOR_VISUAL=0
+        			# Vi mode configuration
+        			VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+        			KEYTIMEOUT=15
+        			MODE_INDICATOR="%F{blue} %f"
+        			INSERT_MODE_INDICATOR="%F{green} %f"
+        			VI_MODE_CURSOR_VISUAL=0
 
-            HYPHEN_INSENSITIVE="true"
+        			HYPHEN_INSENSITIVE="true"
       '';
     };
 
-    # mostly enviornments 
-    initContent = ''
-      	    # Add custom paths to PATH
-      	    export PATH="$HOME/scripts:$HOME/.cargo/bin:$PATH"
-    '';
+    initContent =
+      let
+        enviornments = lib.mkBefore ''
+          			# path
+          			export PATH="$HOME/scripts:$HOME/.cargo/bin:$PATH"
 
-    shellAliases = {
-      ls = "exa --icons";
-      trash = "gio trash";
-      copy = "wl-copy";
-    };
+          			# pyenv
+          			export PYENV_ROOT="$HOME/.pyenv"
+          			[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+          			eval "$(pyenv init -)"
 
-    initExtra = ''
-              			
-      	# Add vi mode indicator to prompt
-        	PROMPT="$(vi_mode_prompt_info)$PROMPT"
+          			# GHCup environment
+          			[ -f "/home/sky/.ghcup/env" ] && . "/home/sky/.ghcup/env"
 
-        	# WezTerm shell integration
-        	if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
-        	  source ~/.config/wezterm/shell-integration/wezterm.sh
-        	fi
+          			# opam 
+          			[[ ! -r '/home/sky/.opam/opam-init/init.zsh' ]] || source '/home/sky/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+        '';
+        configs = lib.mkDefault ''
+          			# Zoxide initialization
+          			eval "$(zoxide init --cmd cd zsh)"
 
-        	# Pyenv initialization
-        	export PYENV_ROOT="$HOME/.pyenv"
-        	[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-        	eval "$(pyenv init -)"
+          			# WezTerm shell integration
+          			if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
+          			  source ~/.config/wezterm/shell-integration/wezterm.sh
+          			fi
+        '';
+        overrides = lib.mkAfter ''
+          			if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="white"; fi
 
-        	# GHCup environment
-        	[ -f "/home/sky/.ghcup/env" ] && . "/home/sky/.ghcup/env"
+          			PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+          			RPROMPT='[%*]'
 
-        	# Zoxide initialization
-        	eval "$(zoxide init --cmd cd zsh)"
-
-        	# Opam configuration
-        	[[ ! -r '/home/sky/.opam/opam-init/init.zsh' ]] || source '/home/sky/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-        	'';
-
-
+          			# Add vi mode indicator to prompt
+          			PROMPT="$(vi_mode_prompt_info)$PROMPT"
+        '';
+      in
+      lib.mkMerge [ enviornments configs overrides ];
   };
 
   home.packages = with pkgs; [
