@@ -7,6 +7,12 @@
     autosuggestion.enable = false;
     syntaxHighlighting.enable = true;
 
+    profileExtra = ''
+      if uwsm check may-start 1>/dev/null && [ -z "''${SSH_CONNECTION}" ]; then
+      exec uwsm start hyprland.desktop
+      fi
+    '';
+
     dotDir = "${config.xdg.configHome}/zsh";
 
     history = {
