@@ -16,6 +16,7 @@
     dotDir = "${config.xdg.configHome}/zsh";
 
     history = {
+      path = "$HOME/.zsh_history";
       size = 10000;
     };
 
