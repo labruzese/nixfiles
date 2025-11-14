@@ -1,5 +1,11 @@
 { config, pkgs, lib, ... }:
 {
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [ "--cmd" "cd" ];
+  };
+
   programs.zsh = {
     enable = true;
 
@@ -76,15 +82,7 @@
           # opam 
           [[ ! -r '/home/sky/.opam/opam-init/init.zsh' ]] || source '/home/sky/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
         '';
-        configs = lib.mkDefault ''
-          # Zoxide initialization
-          eval "$(zoxide init --cmd cd zsh)"
-
-          # WezTerm shell integration
-          if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
-          source ~/.config/wezterm/shell-integration/wezterm.sh
-          fi
-        '';
+        configs = lib.mkDefault '''';
         overrides = lib.mkAfter ''
           if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="white"; fi
 
@@ -99,10 +97,10 @@
   };
 
   home.packages = with pkgs; [
-    exa
-    zoxide
-    neovim
-    wezterm
-    wl-clipboard
+    # exa
+    # zoxide
+    # neovim
+    # wezterm
+    # wl-clipboard
   ];
 }
