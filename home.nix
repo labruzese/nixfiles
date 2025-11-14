@@ -21,4 +21,5 @@
 
   # don't actually install anything
   home.packages = lib.mkForce [ ];
+  home.extraOutputsToInstall = lib.mkForce [ ];
 }
