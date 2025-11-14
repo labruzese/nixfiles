@@ -3,6 +3,7 @@
 {
   programs.wezterm = {
     enable = true;
+    enableZshIntegration = true;
   };
 
   xdg.configFile = {
@@ -13,6 +14,5 @@
       rev = "main";
       sha256 = "sha256-xAEuaWM0WXf0majKdnp5N8PSKMkBF1rDg5i7kOlwQ38=";
     };
-    "wezterm/shell-integration".source = ./shell-integration;
   };
 }

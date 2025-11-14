@@ -198,7 +198,7 @@ if not isclean then
 		},
 	})
 
-	wezterm.on('split-pane', function(window, pane)
+	wezterm.on('split-pane', function(_, pane)
 		-- This event fires right AFTER the split occurs
 		-- The 'pane' parameter is the newly created pane
 		-- Send the clear command to the new pane with a slight delay
