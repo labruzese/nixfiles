@@ -27,6 +27,7 @@
       "$browser" = "uwsm app -- zen.desktop";
       "$chat" = "uwsm app -- vesktop.desktop";
       "$bluetooth" = "blueman-applet";
+      "$screenshot_dir" = lib.mkDefault "~/screenshot-history";
 
       # Game patterns
       "$games" = "class:(steam|heroic|Steam|Heroic|gamescope|lutris|Lutris|bottles|Bottles|legendary|rare)";
@@ -211,7 +212,7 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Screenshot
-        "$mainMod SHIFT, S, exec, grimblast --notify copysave area ~/screenshot-history/$(date +%Y-%m-%d_%H-%M-%S).png"
+        "$mainMod SHIFT, S, exec, grimblast --notify copysave area $screenshot_dir/$(date +%Y-%m-%d_%H-%M-%S).png"
         # Screen recording
         "$mainMod, G, exec, gsr-ui-cli toggle-show"
         "$mainMod, F11, exec, gsr-ui-cli replay-save-1-min"
