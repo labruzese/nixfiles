@@ -1,13 +1,8 @@
 local map = vim.keymap.set
 
--- ignore these buttons (conflict with wezterm)
-map('n', '<A-o>', '<Nop>', { desc = "No operation" })
-map('i', '<A-o>', '<Nop>', { desc = "No operation" })
-map('v', '<A-o>', '<Nop>', { desc = "No operation" })
-map('t', '<A-o>', '<Nop>', { desc = "No operation" })
-
 -- Clipboard
 map('v', 'y', '"+y', { desc = "Yank to system clipboard (visual mode)" })
+map({ 'n', 'v', 'i' }, '<C-c>', '<Esc>gg"+yG``', { desc = "Copy entire file" })
 
 -- Terminal
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
