@@ -26,7 +26,7 @@ require('conform').setup({
 })
 
 -- Mappings
-vim.keymap.set('n', '<space>f', function()
+vim.keymap.set('n', '<leader>f', function()
 	require('conform').format({
 		async = true,
 		lsp_fallback = true,

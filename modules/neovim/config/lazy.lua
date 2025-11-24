@@ -38,13 +38,13 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("bufferline").setup({})
-		end,
-	},
+	-- {
+	-- 	"akinsho/bufferline.nvim",
+	-- 	dependencies = "nvim-tree/nvim-web-devicons",
+	-- 	config = function()
+	-- 		require("bufferline").setup({})
+	-- 	end,
+	-- },
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -61,9 +61,15 @@ require("lazy").setup({
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		config = function()
-			require("which-key").setup()
-		end,
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Keymaps (which-key)"
+			}
+		}
 	},
 	{
 		"kylechui/nvim-surround",
@@ -85,6 +91,13 @@ require("lazy").setup({
 			-- setup cmp for autopairs
 			local cmp_autopairs = require "nvim-autopairs.completion.cmp"
 			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
+	},
+	{
+		'nvim-mini/mini.nvim',
+		version = false,
+		config = function()
+			require('mini.comment').setup()
 		end,
 	},
 
