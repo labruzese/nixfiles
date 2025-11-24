@@ -31,20 +31,34 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
+			local function harpoon_indicator()
+				for index, item in ipairs(require("harpoon"):list().items) do
+					if item.value == vim.api.nvim_buf_get_name(0) then
+						return "󰛢" .. index
+					end
+				end
+				return ""
+			end
 			require("lualine").setup({
 				options = {
 					theme = "auto",
 				},
+				sections = {
+					lualine_c = {
+						"filename",
+						harpoon_indicator,
+					},
+				},
 			})
 		end,
 	},
-	-- {
-	-- 	"akinsho/bufferline.nvim",
-	-- 	dependencies = "nvim-tree/nvim-web-devicons",
-	-- 	config = function()
-	-- 		require("bufferline").setup({})
-	-- 	end,
-	-- },
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("bufferline").setup({})
+		end,
+	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -183,14 +197,14 @@ require("lazy").setup({
 			require('plugins.telescope')
 		end,
 	},
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require('plugins.harpoon')
-		end,
-	},
+	-- {
+	-- 	"ThePrimeagen/harpoon",
+	-- 	branch = "harpoon2",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		require('plugins.harpoon')
+	-- 	end,
+	-- },
 	{
 		'stevearc/quicker.nvim',
 		ft = "qf",
