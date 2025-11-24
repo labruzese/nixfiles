@@ -9,7 +9,6 @@
 
     extraLuaConfig = ''
       vim.g.mapleader = " "
-      vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 
       require('config.lazy') 
 
@@ -41,15 +40,12 @@
   # create the config files that we reference
   xdg.configFile = {
     "nvim/lua/config" = {
-	  source = ./config;
-	  recursive = true;
+      source = ./config;
+      recursive = true;
     };
     "nvim/lua/plugins" = {
-	  source = ./plugins;
-	  recursive = true;
-    };
-    "nvim/lua/chadrc.lua" = {
-      source = ./chadrc/chadrc.lua;
+      source = ./plugins;
+      recursive = true;
     };
   };
 }

@@ -16,21 +16,75 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 require("lazy").setup({
-	-- NVCHAD BASE
 	{
-		"NvChad/NvChad",
-		lazy = false,
-		branch = "v2.5",
-		import = "nvchad.plugins",
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "auto"
+			})
+			vim.cmd.colorscheme("catppuccin")
+		end,
 	},
 	{
-		"NvChad/base46",
-		lazy = false,
-		build = function()
-			require("base46").load_all_highlights()
-		end,
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("base46").load_all_highlights()
+			require("lualine").setup({
+				options = {
+					theme = "auto",
+				},
+			})
+		end,
+	},
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("bufferline").setup({})
+		end,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		config = function()
+			require("ibl").setup()
+		end,
+	},
+	-- {
+	-- 	"stevearc/dressing.nvim",
+	-- 	config = function()
+	-- 		require("dressing").setup()
+	-- 	end,
+	-- },
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("which-key").setup()
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+			})
+		end
+	},
+	{
+		"windwp/nvim-autopairs",
+		opts = {
+			fast_wrap = {},
+			disable_filetype = { "TelescopePrompt", "vim" },
+		},
+		config = function(_, opts)
+			require("nvim-autopairs").setup(opts)
+
+			-- setup cmp for autopairs
+			local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 
@@ -122,6 +176,16 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require('plugins.harpoon')
+		end,
+	},
+	{
+		'stevearc/quicker.nvim',
+		ft = "qf",
+		---@module "quicker"
+		---@type quicker.SetupOptions
+		opts = {},
+		config = function()
+			require("quicker").setup()
 		end,
 	},
 
