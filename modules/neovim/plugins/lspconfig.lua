@@ -53,20 +53,21 @@ vim.lsp.config('hls', {
 	filetypes = { 'haskell', 'lhaskell', 'cabal' },
 })
 
-vim.lsp.config('rust_analyzer', {
-	settings = {
-		['rust-analyzer'] = {
-			diagnostics = {
-				enable = true,
-			}
-		}
-	}
-})
+-- other plugin manages my rust lsp
+-- vim.lsp.config('rust_analyzer', {
+-- 	settings = {
+-- 		['rust-analyzer'] = {
+-- 			diagnostics = {
+-- 				enable = true,
+-- 			}
+-- 		}
+-- 	}
+-- })
 
 -- Enable locally installed LSPs
 vim.lsp.enable('kotlin_lsp')
 vim.lsp.enable('hls')
-vim.lsp.enable('rust_analyzer')
+-- vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ocamllsp')
 
 -- Give the rest to mason

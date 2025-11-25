@@ -139,6 +139,11 @@ require("lazy").setup({
 		end,
 	},
 	{
+		'mrcjkb/rustaceanvim',
+		version = '^6',
+		lazy = false, -- This plugin is already lazy
+	},
+	{
 		"williamboman/mason.nvim",
 		config = function()
 			require('mason').setup()
