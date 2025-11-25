@@ -1,4 +1,10 @@
 return {
+	tools = {
+		float_win_config = {
+			auto_focus = false,
+			open_split = 'vertical',
+		}
+	},
 	server = {
 		on_attach = function(_, bufnr)
 			local map = vim.keymap.set
@@ -17,10 +23,10 @@ return {
 				{ buffer = bufnr, desc = "Rust: Code actions (grouped)" })
 
 			-- Additional Rust-specific bindings
-			map('n', '<leader>ee', function() vim.cmd.RustLsp('explainError') end,
+			map('n', '<leader>re', function() vim.cmd.RustLsp('explainError') end,
 				{ buffer = bufnr, desc = "Rust: Explain error code" })
 
-			map('n', '<leader>er', function() vim.cmd.RustLsp('relatedDiagnostics') end,
+			map('n', '<leader>rr', function() vim.cmd.RustLsp('relatedDiagnostics') end,
 				{ buffer = bufnr, desc = "Rust: Related diagnostics" })
 
 			map('n', '<leader>rc', function() vim.cmd.RustLsp('openCargo') end,

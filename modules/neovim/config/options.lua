@@ -4,6 +4,10 @@ local o = vim.o
 o.title = true
 o.undofile = true
 
+-- general split config
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 -- Line numbers
 o.number = true
 o.relativenumber = true
