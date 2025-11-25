@@ -8,6 +8,7 @@ telescope.setup({
 				["<C-k>"] = actions.move_selection_previous,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+				["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
 				["<esc>"] = actions.close,
 			},
 		},
@@ -32,7 +33,7 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
-telescope.load_extension('rust')
+telescope.load_extension('lsp_handlers')
 
 -- Mappings
 local map = vim.keymap.set
