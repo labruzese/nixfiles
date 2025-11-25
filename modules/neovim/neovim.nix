@@ -10,6 +10,8 @@
     extraLuaConfig = ''
       vim.g.mapleader = " "
 
+      vim.g.rustaceanvim = require('config.rustacean')
+
       require('config.lazy') 
 
       require('config.options')
