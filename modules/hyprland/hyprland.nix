@@ -46,7 +46,6 @@
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
 
-      # Environment variables (non-NVIDIA, can be overridden)
       env = [
         "XCURSOR_SIZE,24"
         "XDG_SESSION_TYPE,wayland"
@@ -156,70 +155,73 @@
       };
 
       # Main modifier
-      "$mainMod" = "SUPER";
+      "$mod" = "SUPER";
 
       # Keybindings
       bind = [
         # Programs
-        "$mainMod, backslash, exec, $terminal_overlay"
-        "$mainMod, Return, exec, $terminal"
-        "$mainMod, D, exec, $browser"
-        "$mainMod, space, exec, $menu"
-        "$mainMod, P, exec, $power_menu"
-        "$mainMod, period, exec, $lock"
+        "$mod, backslash, exec, $terminal_overlay"
+        "$mod, Return, exec, $terminal"
+        "$mod, D, exec, $browser"
+        "$mod, space, exec, $menu"
+        "$mod, P, exec, $power_menu"
+        "$mod, period, exec, $lock"
 
         # Window management
-        "$mainMod, C, killactive,"
-        "$mainMod SHIFT, C, exec, kill -9 $(hyprctl activewindow -j | jq -r '.pid')"
-        "$mainMod SHIFT, V, togglefloating,"
-        "$mainMod, S, togglesplit,"
-        "$mainMod, F, fullscreen,"
+        "$mod SHIFT, C, exec, kill -9 $(hyprctl activewindow -j | jq -r '.pid')"
+        "$mod, C, killactive,"
+        "$mod SHIFT, S, togglesplit,"
+        "$mod, F, fullscreen,"
+        "$mod SHIFT, F, togglefloating,"
 
         # Focus movement
-        "$mainMod, H, movefocus, l"
-        "$mainMod, L, movefocus, r"
-        "$mainMod, K, movefocus, u"
-        "$mainMod, J, movefocus, d"
+        "$mod, H, movefocus, l"
+        "$mod, L, movefocus, r"
+        "$mod, K, movefocus, u"
+        "$mod, J, movefocus, d"
 
         # Window movement
-        "$mainMod SHIFT, H, movewindow, l"
-        "$mainMod SHIFT, L, movewindow, r"
-        "$mainMod SHIFT, K, movewindow, u"
-        "$mainMod SHIFT, J, movewindow, d"
+        "$mod SHIFT, H, movewindow, l"
+        "$mod SHIFT, L, movewindow, r"
+        "$mod SHIFT, K, movewindow, u"
+        "$mod SHIFT, J, movewindow, d"
 
         # Workspaces
-        "$mainMod, Q, workspace, name:home"
-        "$mainMod, W, workspace, name:firefox"
-        "$mainMod, E, workspace, name:dev"
-        "$mainMod, R, workspace, name:game"
-        "$mainMod, T, workspace, name:scratchpad"
-        "$mainMod, Z, workspace, name:music"
-        "$mainMod, X, workspace, name:firefox-ref"
-        "$mainMod, comma, workspace, name:scratchpad2"
+        "$mod, Q, workspace, 1"
+        "$mod, W, workspace, 2"
+        "$mod, E, workspace, 3"
+        "$mod, R, workspace, 4"
+        "$mod, X, workspace, 5"
 
         # Move window to workspaces
-        "$mainMod SHIFT, Q, movetoworkspace, name:home"
-        "$mainMod SHIFT, W, movetoworkspace, name:firefox"
-        "$mainMod SHIFT, E, movetoworkspace, name:dev"
-        "$mainMod SHIFT, R, movetoworkspace, name:game"
-        "$mainMod SHIFT, T, movetoworkspace, name:scratchpad"
-        "$mainMod SHIFT, Z, movetoworkspace, name:music"
-        "$mainMod SHIFT, X, movetoworkspace, name:firefox-ref"
-        "$mainMod SHIFT, comma, movetoworkspace, name:scratchpad2"
+        "$mod SHIFT, Q, movetoworkspace, 1"
+        "$mod SHIFT, W, movetoworkspace, 2"
+        "$mod SHIFT, E, movetoworkspace, 3"
+        "$mod SHIFT, R, movetoworkspace, 4"
+        "$mod SHIFT, X, movetoworkspace, 5"
+
+        # special workspace
+        "$mod, Z, togglespecialworkspace"
+        "$mod, Z, movetoworkspace, +0"
+        "$mod, Z, togglespecialworkspace"
+        "$mod, Z, movetoworkspace, special"
+        "$mod, Z, togglespecialworkspace"
+        "$mod, S, togglespecialworkspace"
 
         # Scroll workspaces
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        "$mod, mouse_down, workspace, e+1"
+        "$mod, mouse_up, workspace, e-1"
 
         # Screenshot
-        "$mainMod SHIFT, S, exec, grimblast --notify copysave area $screenshot_dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+        "$mod SHIFT, S, exec, grimblast --notify copysave area $screenshot_dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+
         # Screen recording
-        "$mainMod, G, exec, gsr-ui-cli toggle-show"
-        "$mainMod, F11, exec, gsr-ui-cli replay-save-1-min"
-        "$mainMod, F12, exec, gsr-ui-cli replay-save-10-min"
+        "$mod, G, exec, gsr-ui-cli toggle-show"
+        "$mod, F11, exec, gsr-ui-cli replay-save-1-min"
+        "$mod, F12, exec, gsr-ui-cli replay-save-10-min"
 
         # clipboard history with wofi
-        "$mainMod, V, exec, cliphist list | wofi --dmenu --matching=fuzzy | cliphist decode | wl-copy"
+        "$mod, V, exec, cliphist list | wofi --dmenu --matching=fuzzy | cliphist decode | wl-copy"
       ];
 
       # Audio/brightness binds
@@ -242,18 +244,12 @@
 
       # Mouse binds
       bindm = [
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
       ];
 
       # Window rules
       windowrule = [
-        # When wezterm is run in overlay workspace
-        "float, class:^(wezterm-overlay)$"
-        "size 40% 40%, class:^(wezterm-overlay)$"
-        "center, class:^(wezterm-overlay)$"
-        "animation slide, class:^(wezterm-overlay)$"
-
         # Treat games differently
         "immediate, $game_classes"
         "fullscreenstate 2 2, $game_classes"
@@ -262,7 +258,7 @@
         "noblur, $game_classes"
         "norounding, $game_classes"
         "noanim, $game_classes"
-        "workspace name:game, $game_classes"
+        "workspace 4, $game_classes"
         "stayfocused, $game_classes"
 
         # Rocket League
@@ -270,7 +266,8 @@
         "stayfocused, class:^(steam_app_322170)$"
 
         # Automove vesktop to music
-        "workspace name:music, class:^(vesktop)$"
+        "workspace 5, class:^(vesktop)$"
+        "workspace special, class:^(wezterm-overlay)$"
 
         # Default settings
         # Don't allow maximization and don't focus window popups from xwayland apps

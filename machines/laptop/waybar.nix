@@ -29,11 +29,10 @@ in
 
       "hyprland/workspaces".persistent-workspaces = {
         ${cfg.monitors.primary} = [
-          "home"
-          "firefox"
-          "dev"
-          "game"
-          "scratchpad"
+          "1"
+          "2"
+          "3"
+          "4"
         ];
       };
 

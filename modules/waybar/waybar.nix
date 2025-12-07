@@ -43,15 +43,15 @@
         "hyprland/workspaces" = {
           format = "{icon}";
           format-icons = {
-            home = " ";
-            firefox = " ";
-            dev = " ";
-            game = " ";
-            scratchpad = " ";
-            music = " ";
-            firefox-ref = "*";
-            scratchpad2 = " ";
+            "1" = " ";
+            "2" = " ";
+            "3" = " ";
+            "4" = " ";
+            "5" = " ";
+            "special" = " ";
           };
+          show-special = true;
+          # special-visible-only = true;
           format-window-seperator = "";
           window-rewrite-default = "<span size='small'></span>";
           window-rewrite = {
@@ -63,19 +63,12 @@
             "class<steam>" = "<span size='small'></span>";
           };
           on-click = "activate";
-          sort-by = "id";
           persistent-workspaces = {
             DP-3 = [
-              "home"
-              "firefox"
-              "dev"
-              "game"
-              "scratchpad"
-            ];
-            DP-2 = [
-              "music"
-              "firefox-ref"
-              "scratchpad2"
+              "1"
+              "2"
+              "3"
+              "4"
             ];
           };
         };

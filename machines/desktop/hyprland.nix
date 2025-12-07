@@ -7,7 +7,7 @@
     "$screenshot_dir" = "/data/screenshot-history";
 
     bind = [
-      "$mainMod SHIFT, Return, exec, $terminal_overlay"
+      "$mod SHIFT, Return, exec, $terminal_overlay"
     ];
   };
 }

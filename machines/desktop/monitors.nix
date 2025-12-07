@@ -14,15 +14,11 @@ in
     ];
 
     workspace = [
-      "name:home, monitor:$primary_monitor, default:true"
-      "name:firefox, monitor:$primary_monitor"
-      "name:dev, monitor:$primary_monitor"
-      "name:game, monitor:$primary_monitor"
-      "name:scratchpad, monitor:$primary_monitor"
-
-      "name:music, monitor:$secondary_monitor, default:true, on-created-empty: $chat"
-      "name:firefox-ref, monitor:$secondary_monitor"
-      "name:scratchpad2, monitor:$secondary_monitor"
+      "1, monitor:$primary_monitor, default:true"
+      "2, monitor:$primary_monitor"
+      "3, monitor:$primary_monitor"
+      "4, monitor:$primary_monitor"
+      "5, monitor:$secondary_monitor, default:true, on-created-empty: $chat"
     ];
   };
 }
