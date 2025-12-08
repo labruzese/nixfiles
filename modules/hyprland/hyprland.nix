@@ -170,7 +170,7 @@
         # Window management
         "$mod SHIFT, C, exec, kill -9 $(hyprctl activewindow -j | jq -r '.pid')"
         "$mod, C, killactive,"
-        "$mod SHIFT, S, togglesplit,"
+        "$mod ALT, S, togglesplit,"
         "$mod, F, fullscreen,"
         "$mod SHIFT, F, togglefloating,"
 
