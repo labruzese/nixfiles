@@ -58,7 +58,22 @@ require("lazy").setup({
 			},
 			quickfile = { enabled = true },
 			scope = { enabled = true },
-			scroll = { enabled = true },
+			scroll = {
+				enabled = true,
+				animate = {
+					duration = {
+						step = 8,
+						total = 80,
+					},
+				},
+				animate_repeat = {
+					delay = 100,
+					duration = {
+						step = 5,
+						total = 50,
+					},
+				},
+			},
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
 			styles = {
