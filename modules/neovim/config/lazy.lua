@@ -226,19 +226,21 @@ require("lazy").setup({
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
-		cond = function() return vim.g.theme_name == "catppuccin" end,
 		config = function()
 			require("catppuccin").setup({ flavour = "auto" })
-			vim.cmd.colorscheme("catppuccin")
+			if vim.g.theme_name == "catppuccin" then
+				vim.cmd.colorscheme("catppuccin")
+			end
 		end,
 	},
 	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
-		cond = function() return vim.g.theme_name == "gruvbox" end,
 		config = function()
 			require("gruvbox").setup({ contrast = "soft" })
-			vim.cmd.colorscheme("gruvbox")
+			if vim.g.theme_name == "gruvbox" then
+				vim.cmd.colorscheme("gruvbox")
+			end
 		end,
 	},
 	{
