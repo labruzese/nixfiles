@@ -23,8 +23,9 @@ let
       wezterm_scheme = "Catppuccin Mocha";
       neovim_plugin = "catppuccin";
       neovim_cmd = "catppuccin";
+      vencord =
+        "https://raw.githubusercontent.com/refact0r/midnight-discord/refs/heads/master/themes/flavors/midnight-catppuccin-mocha.theme.css";
     };
-    # GTK Config for Catppuccin
     gtk = {
       enable = true;
       theme = {
@@ -57,6 +58,8 @@ let
       wezterm_scheme = "Gruvbox dark, soft (base16)";
       neovim_plugin = "gruvbox";
       neovim_cmd = "gruvbox";
+      vencord =
+        "https://raw.githubusercontent.com/refact0r/midnight-discord/refs/heads/master/themes/flavors/midnight-vencord.theme.css";
     };
     gtk = {
       enable = true;
