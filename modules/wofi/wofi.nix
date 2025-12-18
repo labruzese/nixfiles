@@ -34,17 +34,79 @@ in {
     };
   };
 
-  xdg.configFile."wofi/theme.css".text = ''
-    :root {
-      --bg-primary: ${colors.base00};
-      --bg-secondary: ${colors.base01};
-      --text-primary: ${colors.base05};
-      --accent-blue: ${colors.base0D};
-      --accent-purple: ${colors.base0E};
-      --accent-red: ${colors.base08};
-      --hover-bg: ${colors.base02}; 
-      --selected-bg: ${colors.base02};
-      --selected-border: ${colors.base0D};
+  xdg.configFile."wofi/style.css".text = ''
+    window {
+    	margin: 10px;
+    	border: 0px solid;
+    	background: transparent;
+    	font-family: JetbrainsMono;
+    	font-size: 14px;
+    }
+
+    #input {
+    	margin: 0px;
+    	margin-left: 5px;
+    	border: none;
+    	color: ${colors.base07};
+    	background-color: transparent;
+    	border-radius: 0px;
+    	padding: 0px;
+    	font-size: 14px;
+    	outline: none;
+    }
+
+    #input:focus {
+    	outline: none;
+    	box-shadow: none;
+    }
+
+    #inner-box {
+    	margin: 0px;
+    	padding: 8px;
+    	border: none;
+    	background-color: ${colors.base00};
+    }
+
+    #outer-box {
+    	margin: 6px;
+    	margin-left: 10px;
+    	margin-right: 10px;
+    }
+
+    #text {
+    	margin: 5px;
+    	border: none;
+    	color: ${colors.base07};
+    	font-weight: 500;
+    }
+
+    #entry {
+    	font-size: 14px;
+    	background-color: transparent;
+    	border: none;
+    	border-radius: 8px;
+    	margin: 0px 8px;
+    	padding: 0px 12px;
+    	transition: all 0.2s ease;
+    }
+
+    #entry:selected {
+    	background-color: ${colors.base02};
+    	border: 1px solid ${colors.base0D};
+    }
+
+    #entry:hover {
+    	background-color: ${colors.base02};
+    }
+
+    #entry:selected #text {
+    	color: ${colors.base0D};
+    	font-weight: 600;
+    }
+
+    #img {
+    	margin-right: 10px;
+    	border-radius: 4px;
     }
   '';
   xdg.configFile."wofi/powermenu-style.css".source = ./powermenu.css;
