@@ -1,62 +1,35 @@
-/* Waybar CSS with Catppuccin Color Palette 
-   Color Reference:
-   - rosewater: #f5e0dc    - flamingo: #f2cdcd     - pink: #f5c2e7       - mauve: #cba6f7
-   - red: #f38ba8          - maroon: #eba0ac       - peach: #fab387      - yellow: #f9e2af
-   - green: #a6e3a1        - teal: #94e2d5         - sky: #89dceb        - sapphire: #74c7ec
-   - blue: #89b4fa         - lavender: #b4befe     - text: #cdd6f4       - subtext1: #bac2de
-   - subtext0: #a6adc8     - overlay2: #9399b2     - overlay1: #7f849c   - overlay0: #6c7086
-   - surface2: #585b70     - surface1: #45475a     - surface0: #313244   - base: #1e1e2e
-   - mantle: #1e1e2e       - crust: #11111b
-*/
-
 window#waybar {
-	font-family: "JetbrainsMono Nerd Font";
+	background: @base00;
+	opacity: 0.95;
+	color: @base05;
 	font-size: 15px;
 	min-height: 10px;
-}
-
-#custom-launcher {
-	font-size: 24px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	padding-left: 10px;
-	padding-right: 5px;
-	border-radius: 10px 0px 0px 10px;
-	border-right-width: 2px;
-	border-right-style: solid;
-	border-right-color: #7f849c;
-	transition: none;
-	color: #cba6f7;
-	background: #1e1e2e;
-}
-
-#custom-launcher:hover {
-	color: #f5c2e7;
-}
-
-window#waybar {
-	background: #1e1e2e;
-	opacity: 0.95;
+	font-family: "JetbrainsMono Nerd Font";
 }
 
 window#waybar.hidden {
 	opacity: 0.2;
 }
 
-#window {
-	padding-left: 10px;
-	padding-right: 10px;
+#custom-launcher {
+	font-size: 24px;
+	padding: 0px 5px 0px 10px;
 	border-radius: 10px 0px 0px 10px;
-	/* transition: none; */
-	/* color: transparent; */
-	/* background: transparent; */
+	border-right: 2px solid @base03;
+	transition: none;
+	color: @base0E;
+	background: @base00;
+}
+
+#custom-launcher:hover {
+	color: @base0D;
 }
 
 #workspaces {
 	font-size: 4px;
 	margin-bottom: 0px;
 	border-radius: 0px 10px 10px 0px;
-	background: #1e1e2e;
+	background: @base00;
 	transition: none;
 }
 
@@ -64,7 +37,7 @@ window#waybar.hidden {
 	transition: none;
 	padding-top: 0px;
 	padding-bottom: 0px;
-	color: #cdd6f4;
+	color: @base05;
 	background: transparent;
 	font-size: 20px;
 	border-radius: 2px;
@@ -72,31 +45,37 @@ window#waybar.hidden {
 
 #workspaces button.occupied {
 	transition: none;
-	color: #f38ba8;
+	color: @base08;
 	background: transparent;
+}
+
+#workspaces button.visible {
+	color: @base05;
 }
 
 #workspaces button:hover {
 	transition: none;
 	box-shadow: inherit;
 	text-shadow: inherit;
-	border-color: #f5c2e7;
+	color: @base05;
+	border-color: @base04;
 }
 
 #workspaces button.active {
-	color: #f5c2e7;
-}
-
-#workspaces button.visible {
-	color: #f5c2e7;
+	color: @base0E;
 }
 
 #workspaces button.urgent {
-	color: #f38ba8;
+	color: @base08;
 }
 
+/* --- Modules --- */
+
 #window {
-	color: #cba6f7;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px 0px 0px 10px;
+	color: @base0E;
 }
 
 #cpu {
@@ -105,8 +84,8 @@ window#waybar.hidden {
 	padding-right: 10px;
 	border-radius: 0px;
 	transition: none;
-	color: #89b4fa;
-	background: #1e1e2e;
+	color: @base0D;
+	background: @base00;
 }
 
 #custom-gpu {
@@ -115,8 +94,8 @@ window#waybar.hidden {
 	padding-right: 10px;
 	border-radius: 0px;
 	transition: none;
-	color: #cba6f7;
-	background: #1e1e2e;
+	color: @base0E;
+	background: @base00;
 }
 
 #memory {
@@ -125,8 +104,8 @@ window#waybar.hidden {
 	padding-right: 10px;
 	border-radius: 0px 10px 10px 0px;
 	transition: none;
-	color: #b4befe;
-	background: #1e1e2e;
+	color: @base07;
+	background: @base00;
 }
 
 #custom-media {
@@ -136,8 +115,8 @@ window#waybar.hidden {
 	margin-bottom: 0px;
 	border-radius: 10px;
 	transition: none;
-	color: #b6d6b7;
-	background: #1e1e2e;
+	color: @base0B;
+	background: @base00;
 }
 
 #tray {
@@ -146,12 +125,10 @@ window#waybar.hidden {
 	margin-bottom: 0px;
 	padding-right: 10px;
 	border-radius: 10px 0px 0px 10px;
-	border-right-width: 2px;
-	border-right-style: solid;
-	border-right-color: #7f849c;
+	border-right: 2px solid @base03;
 	transition: none;
-	color: #94e2d5;
-	background: #1e1e2e;
+	color: @base0C;
+	background: @base00;
 }
 
 #custom-updates {
@@ -161,8 +138,8 @@ window#waybar.hidden {
 	margin-bottom: 0px;
 	border-radius: 10px;
 	transition: none;
-	color: rgba(235, 160, 172, 0.75);
-	background: #1e1e2e;
+	color: @base08;
+	background: @base00;
 }
 
 #pulseaudio {
@@ -170,12 +147,10 @@ window#waybar.hidden {
 	padding-right: 10px;
 	margin-bottom: 0px;
 	border-radius: 0px;
-	border-right-width: 2px;
-	border-right-style: solid;
-	border-right-color: #7f849c;
+	border-right: 2px solid @base03;
 	transition: none;
-	color: #cdd6f4;
-	background: #1e1e2e;
+	color: @base05;
+	background: @base00;
 }
 
 #clock {
@@ -187,8 +162,8 @@ window#waybar.hidden {
 	padding-bottom: 0px;
 	margin-bottom: 0px;
 	transition: none;
-	color: #cdd6f4;
-	background: #1e1e2e;
+	color: @base05;
+	background: @base00;
 	border-radius: 10px;
 }
 
@@ -196,4 +171,5 @@ window#waybar.hidden {
 	font-family: JetbrainsMono;
 	margin-left: 8px;
 	font-size: 15px;
+	color: @base0E;
 }

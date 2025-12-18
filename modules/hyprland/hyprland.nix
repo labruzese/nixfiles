@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-
+let
+  colors = config.theme.colors;
+in
 {
   # deploy scripts
   xdg.configFile."hypr/scripts" = {
@@ -65,8 +67,8 @@
         gaps_in = lib.mkDefault 4;
         gaps_out = lib.mkDefault 10;
         border_size = lib.mkDefault 1;
-        "col.active_border" = "rgba(89b4faee) rgba(f5c2e7ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(${lib.removePrefix "#" colors.base0D}ee) rgba(${lib.removePrefix "#" colors.base0E}ee) 45deg";
+        "col.inactive_border" = "rgba(${lib.removePrefix "#" colors.base03}aa)";
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";

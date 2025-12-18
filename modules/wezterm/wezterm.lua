@@ -1,39 +1,32 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-
 local isclean = wezterm.mux.get_active_workspace():lower():match("clean")
 
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = active_scheme -- will get defined by wezterm.nix
 config.use_fancy_tab_bar = true
 
-if not isclean then
-	config.hide_tab_bar_if_only_one_tab = false
-else
-	config.hide_tab_bar_if_only_one_tab = true
-end
+--this will get overridden if we proceed past the clean config wall
+config.hide_tab_bar_if_only_one_tab = true
 
 config.window_background_opacity = 0.95
 config.initial_cols = 150
 config.initial_rows = 40
 config.enable_kitty_graphics = true
 
-if not isclean then
-	config.default_prog = { 'sh', '-c', 'fastfetch && echo && exec $SHELL' }
-end
 
 -- Tab bar colors
 config.colors = config.colors or {}
-config.colors.tab_bar = {
-	background = "#1e1e2e",
-	active_tab = {
-		bg_color = "#1e1e2e",
-		fg_color = "#f38ba8",
-	},
-	inactive_tab = {
-		bg_color = "#1e1e2e",
-		fg_color = "#b0b0b0",
-	},
-}
+-- config.colors.tab_bar = {
+-- 	background = "#1e1e2e",
+-- 	active_tab = {
+-- 		bg_color = "#1e1e2e",
+-- 		fg_color = "#f38ba8",
+-- 	},
+-- 	inactive_tab = {
+-- 		bg_color = "#1e1e2e",
+-- 		fg_color = "#b0b0b0",
+-- 	},
+-- }
 
 -- Keybindings
 local act = wezterm.action
@@ -124,88 +117,50 @@ config.keys = {
 	{ key = "X",         mods = "ALT|SHIFT", action = act.MoveTab(6) },
 }
 
-
+-- don't run the rest of setup in clean mode
 if isclean then
-	local escape_count = 0
-	local escape_timer = nil
-	table.insert(config.keys, {
-		key = "Escape",
-		action = wezterm.action_callback(function(window, pane)
-			escape_count = escape_count + 1
-			if escape_timer then
-				escape_timer:cancel()
-			end
-			escape_timer = wezterm.time.call_after(0.23, function()
-				escape_count = 0
-				escape_timer = nil
-			end)
-			if escape_count >= 2 then
-				local prog = pane:get_foreground_process_info()
-				local is_qalc = prog and prog.name and prog.name:match("qalc")
-
-				window:perform_action(wezterm.action.SendKey { key = 'c', mods = 'CTRL' }, pane)
-				wezterm.time.call_after(0.1, function()
-					if is_qalc then
-						window:perform_action(
-							wezterm.action.SendString(
-								'qalc -t "$(tail -1 ~/.config/qalculate/qalc.history)" | sed \'s/^[[:space:]]*//;s/[[:space:]]*$//;s/\\n//g\' | wl-copy\n'),
-							pane)
-						wezterm.time.call_after(0.2, function()
-							window:perform_action(wezterm.action.CloseCurrentTab { confirm = false }, pane)
-						end)
-					else
-						window:perform_action(wezterm.action.CloseCurrentTab { confirm = false }, pane)
-					end
-				end)
-				escape_count = 0
-				if escape_timer then
-					escape_timer:cancel()
-					escape_timer = nil
-				end
-			end
-		end),
-	})
+	return config
 end
 
+config.default_prog = { 'sh', '-c', 'fastfetch && echo && exec $SHELL' }
+config.hide_tab_bar_if_only_one_tab = false
 
-if not isclean then
-	-- Load the bar plugin upfront instead of asynchronously
-	local bar = wezterm.plugin.require("https://github.com/labruzese/bar.wezterm")
+-- Load the bar plugin upfront instead of asynchronously
+local bar = wezterm.plugin.require("https://github.com/labruzese/bar.wezterm")
 
-	bar.apply_to_config(config, {
-		position = "bottom",
-		max_width = 32,
-		padding = {
-			left = 1,
-			right = 1,
+bar.apply_to_config(config, {
+	position = "bottom",
+	max_width = 32,
+	padding = {
+		left = 1,
+		right = 1,
+	},
+	separator = {
+		space = 1,
+		left_icon = wezterm.nerdfonts.fa_long_arrow_right,
+		right_icon = wezterm.nerdfonts.fa_long_arrow_left,
+		field_icon = wezterm.nerdfonts.indent_line,
+	},
+	modules = {
+		hostname = {
+			color = 2,
 		},
-		separator = {
-			space = 1,
-			left_icon = wezterm.nerdfonts.fa_long_arrow_right,
-			right_icon = wezterm.nerdfonts.fa_long_arrow_left,
-			field_icon = wezterm.nerdfonts.indent_line,
+		spotify = {
+			enabled = false,
+			color = 3,
+			max_width = 64,
+			throttle = 15,
 		},
-		modules = {
-			hostname = {
-				color = 2,
-			},
-			spotify = {
-				enabled = false,
-				color = 3,
-				max_width = 64,
-				throttle = 15,
-			},
-		},
-	})
+	},
+})
 
-	wezterm.on('split-pane', function(_, pane)
-		-- This event fires right AFTER the split occurs
-		-- The 'pane' parameter is the newly created pane
-		-- Send the clear command to the new pane with a slight delay
-		-- to ensure the shell is ready
-		wezterm.sleep_ms(100)
-		pane:send_text('clear\r')
-	end)
-end
+wezterm.on('split-pane', function(_, pane)
+	-- This event fires right AFTER the split occurs
+	-- The 'pane' parameter is the newly created pane
+	-- Send the clear command to the new pane with a slight delay
+	-- to ensure the shell is ready
+	wezterm.sleep_ms(100)
+	pane:send_text('clear\r')
+end)
 
 return config

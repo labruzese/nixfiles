@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let 
+	colors = config.theme.colors; 
+in
 {
   programs.neovim = {
     enable = true;
@@ -9,8 +11,8 @@
 
     extraLuaConfig = ''
       vim.g.mapleader = " "
-
       vim.g.rustaceanvim = require('config.rustacean')
+	  vim.g.theme_name = "${colors.neovim_cmd}";
 
       require('config.lazy') 
 

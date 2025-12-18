@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
-
-{
+let colors = config.theme.colors;
+in {
   programs.waybar = {
     enable = true;
 
@@ -17,9 +17,7 @@
           "hyprland/window"
         ];
 
-        modules-center = lib.mkDefault [
-          "clock#time"
-        ];
+        modules-center = lib.mkDefault [ "clock#time" ];
 
         modules-right = lib.mkDefault [
           "custom/media"
@@ -37,7 +35,8 @@
           format = lib.mkDefault "{format_source}";
           format-source = lib.mkDefault "         ";
           format-source-muted = lib.mkDefault " ";
-          on-click = lib.mkDefault "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          on-click =
+            lib.mkDefault "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
         };
 
         "hyprland/workspaces" = {
@@ -63,14 +62,7 @@
             "class<steam>" = "<span size='small'></span>";
           };
           on-click = "activate";
-          persistent-workspaces = {
-            DP-3 = [
-              "1"
-              "2"
-              "3"
-              "4"
-            ];
-          };
+          persistent-workspaces = { DP-3 = [ "1" "2" "3" "4" ]; };
         };
 
         "hyprland/window" = {
@@ -142,7 +134,8 @@
         "custom/launcher" = {
           tooltip = false;
           format = " ";
-          on-click = "pkill wofi || /home/sky/.config/hypr/scripts/powermenu.sh";
+          on-click =
+            "pkill wofi || /home/sky/.config/hypr/scripts/powermenu.sh";
           on-click-right = "pkill wofi || wofi --show drun";
         };
 
@@ -155,11 +148,30 @@
           };
           exec-if = "";
           exec = "waybar-module-pacman-updates --no-zero-output";
-          on-click = "hyprctl dispatch exec '~/.config/hypr/scripts/wezterm-overlay.sh paru'";
+          on-click =
+            "hyprctl dispatch exec '~/.config/hypr/scripts/wezterm-overlay.sh paru'";
         };
       };
     };
 
-    style = lib.mkDefault (builtins.readFile ./style.css);
+    style = ''
+      @define-color base00 ${colors.base00};
+      @define-color base01 ${colors.base01};
+      @define-color base02 ${colors.base02};
+      @define-color base03 ${colors.base03};
+      @define-color base04 ${colors.base04};
+      @define-color base05 ${colors.base05};
+      @define-color base06 ${colors.base06};
+      @define-color base07 ${colors.base07};
+      @define-color base08 ${colors.base08};
+      @define-color base09 ${colors.base09};
+      @define-color base0A ${colors.base0A};
+      @define-color base0B ${colors.base0B};
+      @define-color base0C ${colors.base0C};
+      @define-color base0D ${colors.base0D};
+      @define-color base0E ${colors.base0E};
+      @define-color base0F ${colors.base0F};
+
+      ${builtins.readFile ./style.css}'';
   };
 }

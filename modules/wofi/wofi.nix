@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
-
-{
+let colors = config.theme.colors;
+in {
   programs.wofi = {
     enable = true;
 
@@ -34,7 +34,19 @@
     };
   };
 
-  xdg.configFile."wofi/style.css".source = ./style.css;
+  xdg.configFile."wofi/theme.css".text = ''
+    :root {
+      --bg-primary: ${colors.base00};
+      --bg-secondary: ${colors.base01};
+      --text-primary: ${colors.base05};
+      --accent-blue: ${colors.base0D};
+      --accent-purple: ${colors.base0E};
+      --accent-red: ${colors.base08};
+      --hover-bg: ${colors.base02}; 
+      --selected-bg: ${colors.base02};
+      --selected-border: ${colors.base0D};
+    }
+  '';
   xdg.configFile."wofi/powermenu-style.css".source = ./powermenu.css;
   xdg.configFile."wofi/wezterm-wrapper" = {
     source = ./wezterm-wrapper;

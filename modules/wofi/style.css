@@ -1,20 +1,19 @@
+/* Ensure theme.css is loaded via Wofi command args or auto-loading mechanism, 
+   but strictly speaking, this file just consumes the vars. */
+
 window {
 	margin: 10px;
 	border: 0px solid;
-	/* border-image: linear-gradient(45deg, #89b4fa, #cba6f7, #f38ba8, #fab387) 1; */
-	/* background: #1F2032; */
 	background: transparent;
-	/* background-color: #1F2032; */
 	font-family: JetbrainsMono;
 	font-size: 14px;
-	/* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
 }
 
 #input {
 	margin: 0px;
 	margin-left: 5px;
 	border: none;
-	color: #cdd6f4;
+	color: var(--text-primary);
 	background-color: transparent;
 	border-radius: 0px;
 	padding: 0px;
@@ -31,24 +30,24 @@ window {
 	margin: 0px;
 	padding: 8px;
 	border: none;
-	background-color: #1F2032;
+	background-color: var(--bg-primary);
 }
 
 #outer-box {
 	margin: 6px;
 	margin-left: 10px;
 	margin-right: 10px;
-	/* background-color: #1F2032; */
 }
 
 #text {
 	margin: 5px;
 	border: none;
-	color: #cdd6f4;
+	color: var(--text-primary);
 	font-weight: 500;
 }
 
 #entry {
+	font-size: 20px;
 	background-color: transparent;
 	border: none;
 	border-radius: 8px;
@@ -58,16 +57,16 @@ window {
 }
 
 #entry:selected {
-	background-color: rgba(137, 180, 250, 0.2);
-	border: 1px solid rgba(137, 180, 250, 0.3);
+	background-color: var(--selected-bg);
+	border: 1px solid var(--selected-border);
 }
 
 #entry:hover {
-	background-color: rgba(69, 71, 90, 0.6);
+	background-color: var(--hover-bg);
 }
 
 #entry:selected #text {
-	color: #89b4fa;
+	color: var(--accent-blue);
 	font-weight: 600;
 }
 
@@ -76,5 +75,3 @@ window {
 	margin-right: 10px;
 	border-radius: 4px;
 }
-
-/* Scrollbar styling */

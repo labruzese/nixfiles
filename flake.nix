@@ -14,15 +14,18 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      mkHome = modules: home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ] ++ modules;
-      };
-    in
-    {
+      mkHome = modules: theme:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home.nix ] ++ modules;
+          extraSpecialArgs = { inherit theme; };
+        };
+    in {
       homeConfigurations = {
-        "sky@skylar-desktop" = mkHome [ ./machines/desktop/home.nix ];
-        "sky@skylar-laptop" = mkHome [ ./machines/laptop/home.nix ];
+        "sky@skylar-desktop" =
+          mkHome [ ./machines/desktop/home.nix ] "gruvbox-dark-soft";
+        "sky@skylar-laptop" =
+          mkHome [ ./machines/laptop/home.nix ] "catppuccin-mocha";
       };
     };
 }

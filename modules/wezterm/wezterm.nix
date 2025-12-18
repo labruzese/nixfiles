@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-
+let
+  colors = config.theme.colors;
+in
 {
   programs.wezterm = {
     enable = true;
@@ -7,7 +9,12 @@
   };
 
   xdg.configFile = {
-    "wezterm/wezterm.lua".source = ./wezterm.lua;
+    "wezterm/wezterm.lua".text = ''
+      	  --inject scheme into config
+      	  local active_scheme = "${colors.wezterm_scheme}"
+
+      	  ${builtins.readFile ./wezterm.lua}
+      	'';
     "wezterm/bar.wezterm".source = pkgs.fetchFromGitHub {
       owner = "labruzese";
       repo = "bar.wezterm";

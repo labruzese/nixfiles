@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, theme ? "catppuccin-mocha", ... }: {
   home.username = "sky";
   home.homeDirectory = "/home/sky";
   home.stateVersion = "25.11";
@@ -9,6 +8,7 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./modules/theme.nix
     ./modules/hyprland/hyprland.nix
     ./modules/uwsm.nix
     ./modules/xdg-portal.nix
@@ -18,6 +18,9 @@
     ./modules/wezterm/wezterm.nix
     ./modules/zsh.nix
   ];
+
+  # type = lib.types.enum [ "catppuccin-mocha" "gruvbox-dark-soft" ];
+  theme.name = theme;
 
   # don't actually install anything
   home.packages = lib.mkForce [ ];
