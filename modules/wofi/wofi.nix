@@ -109,7 +109,6 @@ in {
     	border-radius: 4px;
     }
   '';
-  xdg.configFile."wofi/powermenu-style.css".source = ./powermenu.css;
   xdg.configFile."wofi/wezterm-wrapper" = {
     source = ./wezterm-wrapper;
     executable = true;

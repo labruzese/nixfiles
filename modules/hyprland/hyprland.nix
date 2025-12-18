@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
-let
-  colors = config.theme.colors;
-in
-{
+let colors = config.theme.colors;
+in {
   # deploy scripts
   xdg.configFile."hypr/scripts" = {
     source = ./scripts;
@@ -32,9 +30,12 @@ in
       "$screenshot_dir" = lib.mkDefault "~/screenshot-history";
 
       # Game patterns
-      "$games" = "class:(steam|heroic|Steam|Heroic|gamescope|lutris|Lutris|bottles|Bottles|legendary|rare)";
-      "$game_titles" = "title:(.*\\.exe|.*Steam.*|.*Heroic.*|.*Proton.*|.*Wine.*|.*game.*|.*Game.*|.*Rocket.*League.*|.*Unreal.*Engine.*|.*Unity.*|.*Direct3D.*|.*Vulkan.*|.*OpenGL.*)";
-      "$game_classes" = "class:(RocketLeague|rocketleague|steam_app_.*|lutris-.*|heroic-.*|.*\\.exe)";
+      "$games" =
+        "class:(steam|heroic|Steam|Heroic|gamescope|lutris|Lutris|bottles|Bottles|legendary|rare)";
+      "$game_titles" =
+        "title:(.*\\.exe|.*Steam.*|.*Heroic.*|.*Proton.*|.*Wine.*|.*game.*|.*Game.*|.*Rocket.*League.*|.*Unreal.*Engine.*|.*Unity.*|.*Direct3D.*|.*Vulkan.*|.*OpenGL.*)";
+      "$game_classes" =
+        "class:(RocketLeague|rocketleague|steam_app_.*|lutris-.*|heroic-.*|.*\\.exe)";
 
       # Autostart
       exec-once = [
@@ -58,16 +59,17 @@ in
         "QT_QPA_PLATFORMTHEME,qt6ct"
       ];
 
-      xwayland = {
-        force_zero_scaling = true;
-      };
+      xwayland = { force_zero_scaling = true; };
 
       # General settings
       general = {
         gaps_in = lib.mkDefault 4;
         gaps_out = lib.mkDefault 10;
         border_size = lib.mkDefault 1;
-        "col.active_border" = "rgba(${lib.removePrefix "#" colors.base0D}ee) rgba(${lib.removePrefix "#" colors.base0E}ee) 45deg";
+        "col.active_border" =
+          "rgba(${lib.removePrefix "#" colors.base0D}ee) rgba(${
+            lib.removePrefix "#" colors.base0E
+          }ee) 45deg";
         "col.inactive_border" = "rgba(${lib.removePrefix "#" colors.base03}aa)";
         resize_on_border = false;
         allow_tearing = false;
@@ -133,9 +135,7 @@ in
         preserve_split = true;
       };
 
-      master = {
-        new_status = "master";
-      };
+      master = { new_status = "master"; };
 
       misc = {
         middle_click_paste = false;
@@ -151,9 +151,7 @@ in
         force_no_accel = lib.mkDefault true;
         sensitivity = lib.mkDefault 0;
 
-        touchpad = {
-          natural_scroll = lib.mkDefault false;
-        };
+        touchpad = { natural_scroll = lib.mkDefault false; };
       };
 
       # Main modifier
@@ -245,10 +243,7 @@ in
       ];
 
       # Mouse binds
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
+      bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
 
       # Window rules
       windowrule = [
@@ -280,20 +275,21 @@ in
   };
 
   # Hyprland dependencies (currently managed by pacman)
-  home.packages = with pkgs; [
-    # uwsm                # Wayland session manager
-    # hyprpaper           # Wallpaper daemon
-    # hyprlock            # Screen locker
-    # grimblast           # Screenshot tool
-    # cliphist            # Clipboard history
-    # wl-clipboard        # Wayland clipboard utilities (wl-copy, wl-paste)
-    # wofi                # Application launcher
-    # playerctl           # Media player controls
-    # brightnessctl       # Brightness control
-    # jq                  # JSON query (needed for: kill -9 $(hyprctl activewindow -j | jq -r '.pid'))
-    # gpu-screen-recorder # Screen recording (provides gsr-ui-cli)
-    # pipewire            # Audio (provides wpctl)
-    # keyd                # Keyboard remapping (provides keyd-application-mapper)
-    # blueman             # Bluetooth manager
-  ];
+  home.packages = with pkgs;
+    [
+      # uwsm                # Wayland session manager
+      # hyprpaper           # Wallpaper daemon
+      # hyprlock            # Screen locker
+      # grimblast           # Screenshot tool
+      # cliphist            # Clipboard history
+      # wl-clipboard        # Wayland clipboard utilities (wl-copy, wl-paste)
+      # wofi                # Application launcher
+      # playerctl           # Media player controls
+      # brightnessctl       # Brightness control
+      # jq                  # JSON query (needed for: kill -9 $(hyprctl activewindow -j | jq -r '.pid'))
+      # gpu-screen-recorder # Screen recording (provides gsr-ui-cli)
+      # pipewire            # Audio (provides wpctl)
+      # keyd                # Keyboard remapping (provides keyd-application-mapper)
+      # blueman             # Bluetooth manager
+    ];
 }
