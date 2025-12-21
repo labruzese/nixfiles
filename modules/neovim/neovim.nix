@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
-let 
-	colors = config.theme.colors; 
+let
+  colors = config.theme.colors;
 in
 {
   programs.neovim = {
@@ -10,15 +10,15 @@ in
     vimAlias = true;
 
     extraLuaConfig = ''
-      vim.g.mapleader = " "
-      vim.g.rustaceanvim = require('config.rustacean')
-	  vim.g.theme_name = "${colors.neovim_cmd}";
+            vim.g.mapleader = " "
+            vim.g.rustaceanvim = require('config.rustacean')
+      	  vim.g.theme_name = "${colors.neovim_cmd}";
 
-      require('config.lazy') 
+            require('config.lazy') 
 
-      require('config.options')
-      require('config.mappings')
-      require('config.autocmds')
+            require('config.options')
+            require('config.mappings')
+            require('config.autocmds')
     '';
 
 
@@ -50,6 +50,12 @@ in
     "nvim/lua/plugins" = {
       source = ./plugins;
       recursive = true;
+    };
+    "nvim/syntax" = {
+      source = ./syntax;
+    };
+    "nvim/ftdetect" = {
+      source = ./ftdetect;
     };
   };
 }
