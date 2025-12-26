@@ -1,4 +1,4 @@
 { config, pkgs, ... }:
 
-{ programs.wofi.settings.xoffset = 595; }
+{ programs.wofi.settings.xoffset = 985; }
 
