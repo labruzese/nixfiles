@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let colors = config.theme.colors;
-in {
+in
+{
   programs.wofi = {
     enable = true;
 
@@ -11,7 +12,7 @@ in {
       no_actions = true;
       width = 440;
       height = 344;
-      xoffset = 795;
+      # xoffset in machine configs
       yoffset = -37;
       line_wrap = "word";
       term = "/home/sky/.config/wofi/wezterm-wrapper";
