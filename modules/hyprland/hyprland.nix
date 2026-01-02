@@ -15,27 +15,27 @@ in {
 
     settings = {
       # Programs - can be overridden per-machine
-      "$terminal" = lib.mkDefault "uwsm app -- wezterm";
+      "$terminal" = lib.mkDefault "gtk-launch wezterm";
       "$terminal_overlay" = "~/.config/hypr/scripts/wezterm-overlay.sh";
       "$power_menu" = "~/.config/hypr/scripts/powermenu.sh";
-      "$fileManager" = "uwsm app -- dolphin.desktop";
+      "$fileManager" = "gtk-launch dolphin.desktop";
       "$menu" = "pkill wofi || wofi --show drun";
       "$lock" = "hyprlock";
       "$wallpaper" = "hyprpaper";
       "$bar" = lib.mkDefault "waybar";
       "$notify" = "mako";
-      "$browser" = "uwsm app -- zen.desktop";
-      "$chat" = "uwsm app -- vesktop.desktop";
+      "$browser" = "gtk-launch zen.desktop";
+      "$chat" = "gtk-launch vesktop.desktop";
       "$bluetooth" = "blueman-applet";
       "$screenshot_dir" = lib.mkDefault "~/screenshot-history";
 
       # Game patterns
       "$games" =
-        "class:(steam|heroic|Steam|Heroic|gamescope|lutris|Lutris|bottles|Bottles|legendary|rare)";
+        "(steam|heroic|Steam|Heroic|gamescope|lutris|Lutris|bottles|Bottles|legendary|rare)";
       "$game_titles" =
-        "title:(.*\\.exe|.*Steam.*|.*Heroic.*|.*Proton.*|.*Wine.*|.*game.*|.*Game.*|.*Rocket.*League.*|.*Unreal.*Engine.*|.*Unity.*|.*Direct3D.*|.*Vulkan.*|.*OpenGL.*)";
+        "(.*\\.exe|.*Steam.*|.*Heroic.*|.*Proton.*|.*Wine.*|.*game.*|.*Game.*|.*Rocket.*League.*|.*Unreal.*Engine.*|.*Unity.*|.*Direct3D.*|.*Vulkan.*|.*OpenGL.*)";
       "$game_classes" =
-        "class:(RocketLeague|rocketleague|steam_app_.*|lutris-.*|heroic-.*|.*\\.exe)";
+        "(RocketLeague|rocketleague|steam_app_.*|lutris-.*|heroic-.*|.*\\.exe)";
 
       # Autostart
       exec-once = [
@@ -248,28 +248,28 @@ in {
       # Window rules
       windowrule = [
         # Treat games differently
-        "immediate, $game_classes"
-        "fullscreenstate 2 2, $game_classes"
-        "noborder, $game_classes"
-        "noshadow, $game_classes"
-        "noblur, $game_classes"
-        "norounding, $game_classes"
-        "noanim, $game_classes"
-        "workspace 4, $game_classes"
-        "stayfocused, $game_classes"
+        "immediate on, match:class $game_classes"
+        "fullscreen_state 2 2, match:class $game_classes"
+        "border_size 0, match:class $game_classes"
+        "no_shadow on, match:class $game_classes"
+        "no_blur on, match:class $game_classes"
+        "rounding 0, match:class $game_classes"
+        "no_anim on, match:class $game_classes"
+        "workspace 4, match:class $game_classes"
+        "stay_focused on, match:class $game_classes"
 
         # Rocket League
-        "immediate, class:^(steam_app_322170)$"
-        "stayfocused, class:^(steam_app_322170)$"
+        "immediate on, match:class ^(steam_app_322170)$"
+        "stay_focused on, match:class ^(steam_app_322170)$"
 
         # Automove vesktop to music
-        "workspace 5, class:^(vesktop)$"
-        "workspace special, class:^(wezterm-overlay)$"
+        "workspace 5, match:class ^(vesktop)$"
+        "workspace special, match:class ^(wezterm-overlay)$"
 
         # Default settings
         # Don't allow maximization and don't focus window popups from xwayland apps
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "suppress_event maximize, match:class .*"
+        "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
       ];
     };
   };
@@ -277,7 +277,6 @@ in {
   # Hyprland dependencies (currently managed by pacman)
   home.packages = with pkgs;
     [
-      # uwsm                # Wayland session manager
       # hyprpaper           # Wallpaper daemon
       # hyprlock            # Screen locker
       # grimblast           # Screenshot tool

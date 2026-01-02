@@ -22,6 +22,6 @@ case $selected in
         systemctl poweroff
         ;;
     "Logout")
-        uwsm stop
+        hyprctl dispatch exit
         ;;
 esac

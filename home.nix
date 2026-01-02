@@ -10,7 +10,6 @@
   imports = [
     ./modules/theme.nix
     ./modules/hyprland/hyprland.nix
-    ./modules/uwsm.nix
     ./modules/xdg-portal.nix
     ./modules/waybar/waybar.nix
     ./modules/wofi/wofi.nix

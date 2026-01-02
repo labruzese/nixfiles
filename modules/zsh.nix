@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
@@ -14,8 +13,11 @@
     syntaxHighlighting.enable = true;
 
     profileExtra = ''
-      if uwsm check may-start 1>/dev/null && [ -z "''${SSH_CONNECTION}" ]; then
-      exec uwsm start hyprland.desktop
+      if [ -z "''${SSH_CONNECTION}" ] && \
+         [ "$(tty)" = "/dev/tty1" ] && \
+         [ -z "''${DISPLAY}" ] && \
+         [ -z "''${WAYLAND_DISPLAY}" ]; then
+        exec start-hyprland
       fi
     '';
 
@@ -46,12 +48,7 @@
       enable = true;
       theme = "clean";
 
-      plugins = [
-        "archlinux"
-        "git"
-        "vi-mode"
-        "extract"
-      ];
+      plugins = [ "archlinux" "git" "vi-mode" "extract" ];
 
       extraConfig = ''
         # Vi mode configuration
@@ -65,42 +62,41 @@
       '';
     };
 
-    initContent =
-      let
-        enviornments = lib.mkBefore ''
-          # path
-          export PATH="$HOME/scripts:$HOME/.cargo/bin:$PATH"
+    initContent = let
+      enviornments = lib.mkBefore ''
+        # path
+        export PATH="$HOME/scripts:$HOME/.cargo/bin:$PATH"
 
-          # pyenv
-          export PYENV_ROOT="$HOME/.pyenv"
-          [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-          eval "$(pyenv init -)"
+        # pyenv
+        export PYENV_ROOT="$HOME/.pyenv"
+        [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init -)"
 
-          # GHCup environment
-          [ -f "/home/sky/.ghcup/env" ] && . "/home/sky/.ghcup/env"
+        # GHCup environment
+        [ -f "/home/sky/.ghcup/env" ] && . "/home/sky/.ghcup/env"
 
-          # opam 
-          [[ ! -r '/home/sky/.opam/opam-init/init.zsh' ]] || source '/home/sky/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-        '';
-        configs = lib.mkDefault '''';
-        overrides = lib.mkAfter ''
-          if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="white"; fi
+        # opam 
+        [[ ! -r '/home/sky/.opam/opam-init/init.zsh' ]] || source '/home/sky/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+      '';
+      configs = lib.mkDefault "";
+      overrides = lib.mkAfter ''
+        if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="white"; fi
 
-          PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
-          RPROMPT='[%*]'
+        PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+        RPROMPT='[%*]'
 
-          # Add vi mode indicator to prompt
-          PROMPT="\$(vi_mode_prompt_info)$PROMPT"
-        '';
-      in
-      lib.mkMerge [ enviornments configs overrides ];
+        # Add vi mode indicator to prompt
+        PROMPT="\$(vi_mode_prompt_info)$PROMPT"
+      '';
+    in lib.mkMerge [ enviornments configs overrides ];
   };
 
-  home.packages = with pkgs; [
-    # exa
-    # zoxide
-    # neovim
-    # wezterm
-    # wl-clipboard
-  ];
+  home.packages = with pkgs;
+    [
+      # exa
+      # zoxide
+      # neovim
+      # wezterm
+      # wl-clipboard
+    ];
 }
