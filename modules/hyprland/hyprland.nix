@@ -11,7 +11,6 @@ in {
   # config
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = true;
 
     settings = {
       # Programs - can be overridden per-machine
@@ -255,12 +254,13 @@ in {
         "no_blur on, match:class $game_classes"
         "rounding 0, match:class $game_classes"
         "no_anim on, match:class $game_classes"
-        "workspace 4, match:class $game_classes"
-        "stay_focused on, match:class $game_classes"
+        # "workspace 4, match:class $game_classes"
+        # "stay_focused on, match:class $game_classes"
 
         # Rocket League
-        "immediate on, match:class ^(steam_app_322170)$"
-        "stay_focused on, match:class ^(steam_app_322170)$"
+        "immediate on, match:class ^(rocketleague.exe)$"
+        "render_unfocused on, match:class ^(rocketleague.exe)$"
+        "float on, match:class ^(bakkesmod.exe)$"
 
         # Automove vesktop to music
         "workspace 5, match:class ^(vesktop)$"
