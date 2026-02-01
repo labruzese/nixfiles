@@ -62,8 +62,8 @@ in {
 
       # General settings
       general = {
-        gaps_in = lib.mkDefault 4;
-        gaps_out = lib.mkDefault 10;
+        gaps_in = lib.mkDefault 2;
+        gaps_out = lib.mkDefault 3;
         border_size = lib.mkDefault 1;
         "col.active_border" =
           "rgba(${lib.removePrefix "#" colors.base0D}ee) rgba(${
