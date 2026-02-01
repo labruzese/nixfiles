@@ -32,6 +32,7 @@
       ls = "exa --icons";
       trash = "gio trash";
       copy = "wl-copy";
+      vim = "nvim";
     };
 
     # Vi mode settings
