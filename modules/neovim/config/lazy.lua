@@ -355,8 +355,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		'mrcjkb/rustaceanvim',
-		version = '^6',
+		dir = "/home/sky/dev/rust-analyzer-tests/rustaceanvim",
 		lazy = false, -- This plugin is already lazy
 	},
 	{

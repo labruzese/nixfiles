@@ -6,6 +6,7 @@ return {
 		}
 	},
 	server = {
+		cmd = { "/home/sky/dev/rust-analyzer-tests/rust-analyzer/target/debug/rust-analyzer", "--log-file", "/tmp/nvim.sky/cLHYQJ/0-rust-analyzer.log" },
 		on_attach = function(_, bufnr)
 			local map = vim.keymap.set
 
