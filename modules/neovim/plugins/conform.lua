@@ -19,7 +19,7 @@ require('conform').setup({
 	},
 	format_on_save = {
 		timeout_ms = 15000,
-		lsp_format = "fallback", -- Changed from lsp_fallback = true
+		lsp_format = "fallback",
 	},
 	log_level = vim.log.levels.INFO,
 	notify_on_error = true,
