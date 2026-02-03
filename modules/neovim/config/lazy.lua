@@ -346,6 +346,10 @@ require("lazy").setup({
 			require('treesitter-context').setup({})
 		end,
 	},
+	{
+		'elkowar/yuck.vim',
+		ft = 'yuck',
+	},
 
 	-- LSP
 	{
