@@ -16,6 +16,7 @@
     ./modules/neovim/neovim.nix
     ./modules/wezterm/wezterm.nix
     ./modules/zsh.nix
+    ./modules/eww/eww.nix
   ];
 
   # type = lib.types.enum [ "catppuccin-mocha" "gruvbox-dark-soft" ];
