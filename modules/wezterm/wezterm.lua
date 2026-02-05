@@ -122,7 +122,7 @@ if isclean then
 	return config
 end
 
-config.default_prog = { 'sh', '-c', 'fastfetch && echo && exec $SHELL' }
+-- config.default_prog = { 'sh', '-c', 'fastfetch && echo && exec $SHELL' }
 config.hide_tab_bar_if_only_one_tab = false
 
 -- Load the bar plugin upfront instead of asynchronously
