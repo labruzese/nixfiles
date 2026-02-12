@@ -363,6 +363,10 @@ require("lazy").setup({
 		lazy = false, -- This plugin is already lazy
 	},
 	{
+		"whonore/Coqtail",
+		ft = "coq",
+	},
+	{
 		"williamboman/mason.nvim",
 		config = function()
 			require('mason').setup()
