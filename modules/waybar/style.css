@@ -1,6 +1,6 @@
 window#waybar {
 	background: @base00;
-	opacity: 0.95;
+	opacity: 1;
 	color: @base05;
 	font-size: 15px;
 	min-height: 10px;
