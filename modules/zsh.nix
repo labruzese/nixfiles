@@ -84,7 +84,7 @@
         if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="white"; fi
 
         PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
-		# RPROMPT='[%*]'
+		RPROMPT=
 
         # Add vi mode indicator to prompt
 		# PROMPT="\$(vi_mode_prompt_info)$PROMPT"
