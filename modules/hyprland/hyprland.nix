@@ -15,7 +15,8 @@ in {
     settings = {
       # Programs - can be overridden per-machine
       "$terminal" = lib.mkDefault "gtk-launch org.wezfurlong.wezterm";
-      "$terminal_overlay" = "~/.config/hypr/scripts/wezterm-overlay.sh";
+      "$terminal_overlay" =
+        lib.mkDefault "~/.config/hypr/scripts/wezterm-overlay.sh";
       "$power_menu" = "~/.config/hypr/scripts/powermenu.sh";
       "$fileManager" = "gtk-launch dolphin.desktop";
       "$menu" = "pkill wofi || wofi --show drun";
