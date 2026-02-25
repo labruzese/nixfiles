@@ -85,7 +85,7 @@
       overrides = lib.mkAfter ''
         if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="white"; fi
 
-        PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)$(vi_mode_prompt_info) '
+        PROMPT='$(git_prompt_info)%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(vi_mode_prompt_info) '
 		RPROMPT=
 
         # Add vi mode indicator to prompt
