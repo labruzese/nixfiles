@@ -52,11 +52,13 @@
       plugins = [ "archlinux" "git" "vi-mode" "extract" ];
 
       extraConfig = ''
+		LC_CTYPE=en_US.UTF-8
+
         # Vi mode configuration
         VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
         KEYTIMEOUT=15
-        MODE_INDICATOR="%F{blue} %f"
-        INSERT_MODE_INDICATOR="%F{green} %f"
+        MODE_INDICATOR="%F{blue}%(!.#.$)%f"
+        INSERT_MODE_INDICATOR="%F{green}%(!.#.$)%f"
         VI_MODE_CURSOR_VISUAL=0
 
         HYPHEN_INSENSITIVE="true"
@@ -83,7 +85,7 @@
       overrides = lib.mkAfter ''
         if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="white"; fi
 
-        PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+        PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)$(vi_mode_prompt_info) '
 		RPROMPT=
 
         # Add vi mode indicator to prompt
