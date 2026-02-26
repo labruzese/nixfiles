@@ -20,7 +20,7 @@
     };
 
     bind = [
-      "$mod SHIFT, Return, exec, wezterm ssh desktop"
+      "$mod SHIFT, Return, exec, $terminal ssh desktop"
     ];
 
     bindl = [
