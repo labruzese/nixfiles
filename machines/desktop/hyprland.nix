@@ -4,8 +4,6 @@
   wayland.windowManager.hyprland.settings = {
     # don't used patched waybar
     "$bar" = "waybar"; # "/home/sky/dev/waybar-fix/build/waybar";
-    "$terminal" = "foot";
-    "$terminal_overlay" = "foot";
     "$screenshot_dir" = "/data/screenshot-history";
 
     bind = [ "$mod SHIFT, Return, exec, $terminal_overlay" ];
