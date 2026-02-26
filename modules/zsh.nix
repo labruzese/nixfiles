@@ -68,7 +68,10 @@
     initContent = let
       enviornments = lib.mkBefore ''
         # path
-        export PATH="$HOME/scripts:$HOME/.cargo/bin:$PATH"
+		PATH="$HOME/scripts:$PATH"
+		PATH="$HOME/.cargo/bin:$PATH"
+		PATH="$HOME/programs/zig/build/stage3/bin:$PATH"
+		export PATH
 
         # pyenv
         export PYENV_ROOT="$HOME/.pyenv"
