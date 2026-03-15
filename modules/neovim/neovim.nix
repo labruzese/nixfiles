@@ -12,7 +12,7 @@ in
     extraLuaConfig = ''
             vim.g.mapleader = " "
             vim.g.rustaceanvim = require('config.rustacean')
-      	  vim.g.theme_name = "${colors.neovim_cmd}";
+			vim.g.theme_name = "${colors.neovim_cmd}";
 
             require('config.lazy') 
 
