@@ -263,6 +263,11 @@ in
         "render_unfocused on, match:class ^(rocketleague.exe)$"
         "float on, match:class ^(bakkesmod.exe)$"
 
+	# Composing Emails
+	"float on, match:class ^(betterbird-compose)$"
+	"size (monitor_h*0.8*16/9) (monitor_h*0.8), match:class ^(betterbird-compose)$"
+	"center 1, match:class ^(betterbird-compose)$"
+
         # Automove vesktop to music
         "workspace 5, match:class ^(vesktop)$"
         "workspace special, match:class ^(wezterm-overlay)$"
