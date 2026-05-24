@@ -3,7 +3,7 @@
 {
   imports = [
     ./monitors.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     ./waybar.nix
     ./wofi.nix
   ];
