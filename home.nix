@@ -11,7 +11,7 @@
     ./modules/theme.nix
     # ./modules/hyprland/hyprland.nix
     ./modules/xdg-portal.nix
-    ./modules/waybar/waybar.nix
+    # ./modules/waybar/waybar.nix
     ./modules/wofi/wofi.nix
     ./modules/wezterm/wezterm.nix
     ./modules/zsh.nix

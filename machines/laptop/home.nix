@@ -4,7 +4,7 @@
   imports = [
     ./monitors.nix
     # ./hyprland.nix
-    ./waybar.nix
+    # ./waybar.nix
     ./wofi.nix
   ];
 
