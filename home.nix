@@ -14,7 +14,7 @@
     # ./modules/waybar/waybar.nix
     ./modules/wofi/wofi.nix
     ./modules/wezterm/wezterm.nix
-    ./modules/zsh.nix
+    # ./modules/zsh.nix
     # ./modules/eww/eww.nix
   ];
 
